@@ -10,7 +10,7 @@ This repository contains an independently versioned, **source-only validation sn
 - Excludes private extensions, instance exports, local configuration, credentials, archived internal planning, and original binary design assets.
 - A successful workflow validates this mirror snapshot. It is **not** a live Home Assistant acceptance test and does not by itself authorize DRA deployment.
 
-The public snapshot intentionally omits binary artwork. Do not install or deploy this checkout as a complete Home Assistant package.
+The public validation snapshot intentionally omits product/runtime artwork. The only binary presentation assets allowed in this repository are explicitly approved files under `assets/project-page/` that are required by the public GitHub Pages project presentation. They are not part of the validation snapshot or an installable Home Assistant package. Do not install or deploy this checkout as a complete Home Assistant package.
 
 ## Validation
 
@@ -20,3 +20,8 @@ find custom_components/weather_router/frontend -type f -name '*.js' -print0 | xa
 ```
 
 See the GitHub Actions workflow for the complete source/contract validation gate.
+
+
+## Project page
+
+The public WeatherRouter project presentation is published from the repository root via GitHub Pages. The approved Project-Hub routing illustration is stored separately under `assets/project-page/` and is not part of the validation snapshot.

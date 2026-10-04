@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WeatherRouter · Eine Idee weiter gedacht.</title>
+  <meta name="description" content="WeatherRouter ist eine providerneutrale Vermittlungs- und Entscheidungsschicht für Wetter- und Gefahreninformationen.">
+  <meta name="theme-color" content="#0b0d12">
+  <meta property="og:title" content="WeatherRouter">
+  <meta property="og:description" content="Consumer fragen fachliche Fähigkeiten an. WeatherRouter entscheidet, welche Quelle den Bedarf am besten erfüllt.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thedaimos.github.io/weather-router-pub/">
+  <meta property="og:image" content="https://thedaimos.github.io/weather-router-pub/assets/project-page/weatherrouter-routing-illustration-v1.webp">
+  <link rel="canonical" href="https://thedaimos.github.io/weather-router-pub/">
+  <style>
+    :root{
+      color-scheme:dark;
+      --bg:#090b10;
+      --panel:#10141b;
+      --panel2:#151a22;
+      --text:#f2f4f7;
+      --muted:#aeb6c2;
+      --gold:#d0aa5c;
+      --gold2:#8e6a2d;
+      --line:rgba(211,174,96,.34);
+      --soft:rgba(255,255,255,.06);
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 18% 8%,rgba(209,168,87,.08),transparent 28rem),
+        radial-gradient(circle at 82% 24%,rgba(78,114,171,.08),transparent 32rem),
+        linear-gradient(180deg,#0b0d12 0%,#080a0e 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .shell{width:min(calc(100% - 32px),var(--max));margin:auto}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter:blur(16px);
+      background:rgba(9,11,16,.76);
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:800;letter-spacing:.02em}
+    .brand span{color:var(--gold)}
+    .navlinks{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+    .navlinks a{font-size:.92rem;color:var(--muted);text-decoration:none}
+    .navlinks a:hover{color:var(--text)}
+    .hero{padding:70px 0 38px}
+    .eyebrow{
+      color:var(--gold);font-size:.78rem;text-transform:uppercase;
+      letter-spacing:.2em;font-weight:800;margin-bottom:14px
+    }
+    h1{font-size:clamp(2.8rem,8vw,6.6rem);line-height:.94;margin:0;letter-spacing:-.055em}
+    .lead{
+      max-width:840px;font-size:clamp(1.15rem,2.4vw,1.55rem);
+      color:#d7dce4;margin:24px 0 0
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:44px;padding:0 17px;border-radius:12px;text-decoration:none;
+      border:1px solid var(--line);background:linear-gradient(180deg,rgba(218,179,98,.16),rgba(218,179,98,.07));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.07)
+    }
+    .btn.secondary{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.1);color:#d7dce4}
+    .hero-card{
+      margin:44px 0 0;padding:clamp(14px,2.2vw,26px);
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(145deg,rgba(215,176,94,.08),transparent 36%),
+        linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+      box-shadow:0 24px 90px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.05)
+    }
+    .hero-card img{display:block;width:100%;height:auto;border-radius:15px}
+    .caption{margin:12px 4px 0;color:#8f98a6;font-size:.84rem}
+    section{padding:46px 0}
+    .section-head{max-width:790px;margin-bottom:26px}
+    h2{font-size:clamp(1.9rem,4vw,3rem);line-height:1.08;margin:0 0 12px;letter-spacing:-.035em}
+    .section-head p{margin:0;color:var(--muted);font-size:1.05rem}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{
+      padding:23px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.085);
+      background:linear-gradient(180deg,var(--soft),rgba(255,255,255,.018))
+    }
+    .card .num{color:var(--gold);font-weight:800;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+    .card h3{margin:8px 0 8px;font-size:1.12rem}
+    .card p{margin:0;color:var(--muted)}
+    .flow{
+      display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch
+    }
+    .flow div{
+      min-height:98px;padding:16px;border-radius:15px;border:1px solid rgba(255,255,255,.08);
+      background:#10141b;display:flex;align-items:center;justify-content:center;text-align:center;
+      color:#d9dee6;font-weight:700
+    }
+    .flow div:not(:last-child)::after{content:"→";position:absolute}
+    .split{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+    .quote{
+      padding:30px;border-radius:20px;border:1px solid var(--line);
+      background:linear-gradient(160deg,rgba(205,164,83,.12),rgba(255,255,255,.02));
+      font-size:clamp(1.3rem,3vw,2rem);line-height:1.35;font-weight:750
+    }
+    .quote small{display:block;margin-top:18px;color:var(--muted);font-size:.86rem;font-weight:500}
+    .list{padding:0;margin:0;list-style:none}
+    .list li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);color:#d7dce4}
+    .list li:last-child{border-bottom:0}
+    .note{
+      border-left:3px solid var(--gold);padding:10px 0 10px 18px;color:var(--muted);margin-top:18px
+    }
+    footer{padding:40px 0 60px;color:#929aa7;border-top:1px solid rgba(255,255,255,.06);margin-top:30px}
+    footer strong{color:#d7dce4}
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr 1fr}
+      .flow{grid-template-columns:1fr 1fr}
+      .split{grid-template-columns:1fr}
+    }
+    @media (max-width:620px){
+      .shell{width:min(calc(100% - 22px),var(--max))}
+      .hero{padding-top:48px}
+      .nav{align-items:flex-start;padding:14px 0}
+      .navlinks{gap:10px}
+      .grid,.flow{grid-template-columns:1fr}
+      .hero-card{border-radius:18px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell nav">
+      <div class="brand">Weather<span>Router</span></div>
+      <nav class="navlinks" aria-label="Seitennavigation">
+        <a href="#idee">Idee</a>
+        <a href="#prinzip">Routing</a>
+        <a href="#architektur">Architektur</a>
+        <a href="https://github.com/TheDaimos/weather-router-pub" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell hero">
+      <div class="eyebrow">Providerneutrales Routing für Wetter- und Gefahreninformationen</div>
+      <h1>WeatherRouter</h1>
+      <p class="lead">
+        Consumer fragen nicht nach einem bestimmten Anbieter, sondern nach einem fachlichen Bedarf.
+        WeatherRouter bewertet passende Quellen, berücksichtigt Kontext und Einschränkungen und liefert
+        die geeignete Resource samt Provenienz zurück.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="#prinzip">Wie das Routing funktioniert</a>
+        <a class="btn secondary" href="https://github.com/TheDaimos/weather-router-pub" rel="noopener noreferrer">Öffentlicher GitHub-Spiegel</a>
+      </div>
+
+      <figure class="hero-card" aria-labelledby="octopus-caption">
+        <img
+          src="assets/project-page/weatherrouter-routing-illustration-v1.webp"
+          alt="Originale WeatherRouter Routing-Illustration aus dem Daimos Project Hub"
+          width="600"
+          height="594"
+          decoding="async">
+        <figcaption class="caption" id="octopus-caption">
+          Originale WeatherRouter Routing-Illustration aus dem Daimos Project Hub · unverändert veröffentlicht.
+        </figcaption>
+      </figure>
+    </div>
+
+    <section id="idee">
+      <div class="shell">
+        <div class="section-head">
+          <div class="eyebrow">Die Idee</div>
+          <h2>Nicht der Consumer soll Provider kennen.</h2>
+          <p>
+            WeatherRouter trennt den fachlichen Bedarf von der konkreten Datenquelle.
+            Dadurch bleibt die Auswahl dort, wo Coverage, Datenart, Verfügbarkeit und Routingregeln zusammenlaufen: im Router.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="num">01 · Bedarf</div>
+            <h3>Fachlich anfragen</h3>
+            <p>Ein Consumer beschreibt, was er benötigt — etwa flächigen Niederschlag — statt einen bestimmten Anbieter vorzuschreiben.</p>
+          </article>
+          <article class="card">
+            <div class="num">02 · Auswahl</div>
+            <h3>Kandidaten bewerten</h3>
+            <p>WeatherRouter prüft geeignete Kandidaten anhand normalisierter Eigenschaften und harter Ausschlussregeln.</p>
+          </article>
+          <article class="card">
+            <div class="num">03 · Ergebnis</div>
+            <h3>Resource + Provenienz</h3>
+            <p>Der Consumer erhält die nutzbare Resource und kann nachvollziehen, welche Quelle tatsächlich verwendet wurde.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prinzip">
+      <div class="shell">
+        <div class="section-head">
+          <div class="eyebrow">Routing-Prinzip</div>
+          <h2>Automatik im Normalfall. Präzision im Expertenmodus.</h2>
+          <p>
+            Breite Routing-Intents ermöglichen automatische Fallback-Ketten. Spezialisierte Capabilities bleiben bestehen,
+            wenn ein Consumer bewusst eine konkrete Messgröße oder Darstellungsart benötigt.
+          </p>
+        </div>
+        <div class="flow" aria-label="Vereinfachte Routing-Pipeline">
+          <div>Consumer-Request</div>
+          <div>Routing-Intent</div>
+          <div>Eligibility &amp; Profil</div>
+          <div>Coverage &amp; Semantik</div>
+          <div>Resource + Provenienz</div>
+        </div>
+        <p class="note">
+          Provider-IDs sind kein Qualitätswert. Ein Profil schränkt ein, definiert aber keine Provider-Priorität.
+        </p>
+      </div>
+    </section>
+
+    <section id="architektur">
+      <div class="shell split">
+        <div class="quote">
+          „Consumer fragen nach einem fachlichen Bedarf. WeatherRouter entscheidet, welche zugelassene und geeignete Quelle diesen Bedarf für den konkreten Kontext am besten erfüllt.“
+          <small>Leitprinzip der Themen- und Routing-Strategie</small>
+        </div>
+        <article class="card">
+          <div class="num">Architektur</div>
+          <h3>Vier getrennte Ebenen</h3>
+          <ul class="list">
+            <li><strong>Fachbereich</strong> — harte Router- und Freigabegrenze</li>
+            <li><strong>Thema</strong> — fachliche Sicht auf das Problem</li>
+            <li><strong>Public Capability / Routing-Intent</strong> — Consumer-Vertrag</li>
+            <li><strong>Candidate</strong> — konkrete Provider-Capability</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-head">
+          <div class="eyebrow">Warum diese Trennung wichtig ist</div>
+          <h2>Ähnliche Daten sind nicht automatisch identische Daten.</h2>
+          <p>
+            Radarreflektivität, Niederschlagsrate, Satellitenschätzung und Modellakkumulation können denselben
+            visuellen Bedarf bedienen, sind physikalisch aber nicht dasselbe. WeatherRouter hält Herkunft,
+            Messmethode, Zeitsemantik, Größe und Einheit deshalb sichtbar.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card"><h3>Coverage</h3><p>Eine erreichbare technische Quelle bedeutet nicht automatisch fachliche Abdeckung für den angefragten Ort.</p></article>
+          <article class="card"><h3>Semantik</h3><p>Messmethode, Beobachtungsart, physikalische Größe und Einheit bleiben Teil der Routingentscheidung.</p></article>
+          <article class="card"><h3>Transparenz</h3><p>Diagnose und Provenienz sollen erklären, warum ein Kandidat verworfen und ein anderer ausgewählt wurde.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-head">
+          <div class="eyebrow">Öffentlicher Projektzugang</div>
+          <h2>Quellspiegel und Projektseite bewusst getrennt vom privaten Entwicklungsstand.</h2>
+          <p>
+            Das öffentliche Repository ist ein unabhängig versionierter Validierungs- und Dokumentationsspiegel.
+            Es ist weder die private Entwicklungsquelle noch automatisch ein installierbares Home-Assistant-Paket.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/TheDaimos/weather-router-pub" rel="noopener noreferrer">weather-router-pub auf GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <strong>C.K. – Eine Idee weiter gedacht.</strong><br>
+      WeatherRouter · öffentliche Projektvorstellung
+    </div>
+  </footer>
+</body>
+</html>

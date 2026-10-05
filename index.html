@@ -168,26 +168,128 @@
     .routing-showcase__header{
       text-align:center;
       margin:0 auto;
-      max-width:760px
+      width:min(100%,1120px)
     }
-    .routing-showcase__brand{
+    .routing-showcase__header--ornament{
+      position:relative
+    }
+    .routing-head__title{
       margin:0;
-      font-size:clamp(2rem,3.5vw,3.15rem);
+      color:#e6c58c;
+      font-size:clamp(1.9rem,3vw,2.85rem);
       line-height:1;
-      letter-spacing:-.045em;
-      font-weight:850;
-      color:#f4f7fb;
-      text-shadow:0 2px 20px rgba(0,0,0,.55)
-    }
-    .routing-showcase__brand span{color:var(--wr-blue)}
-    .routing-showcase__subtitle{
-      margin:13px 0 0;
-      color:#e2c58b;
-      font-size:clamp(.68rem,1.1vw,.84rem);
-      font-weight:800;
+      font-weight:300;
+      letter-spacing:.18em;
       text-transform:uppercase;
-      letter-spacing:.23em;
-      text-shadow:0 1px 0 rgba(0,0,0,.8),0 0 14px rgba(226,197,139,.14)
+      text-shadow:
+        0 1px 0 rgba(0,0,0,.95),
+        0 0 12px rgba(231,199,134,.08)
+    }
+    .routing-head__subtitle-row{
+      display:grid;
+      grid-template-columns:minmax(80px,1fr) auto minmax(80px,1fr);
+      align-items:start;
+      gap:18px;
+      margin-top:14px
+    }
+    .routing-head__subtitle-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      min-width:max-content
+    }
+    .routing-head__subtitle{
+      color:#d6a85b;
+      font-size:clamp(.82rem,1.2vw,1.18rem);
+      line-height:1.08;
+      font-weight:430;
+      letter-spacing:.32em;
+      text-transform:uppercase;
+      text-shadow:
+        0 1px 0 rgba(0,0,0,.9),
+        0 0 10px rgba(215,169,86,.08)
+    }
+
+    /* Premium-Metallleiste: dunkler Messingkörper, helle Lichtkante und Spiegelglanz. */
+    .routing-head__metal-line{
+      position:relative;
+      display:block;
+      height:8px;
+      margin-top:14px;
+      min-width:0;
+      overflow:visible
+    }
+    .routing-head__metal-line::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:50%;
+      height:3px;
+      transform:translateY(-50%);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,246,218,.52) 0%,
+          rgba(239,203,137,.92) 22%,
+          rgba(129,82,28,.98) 52%,
+          rgba(63,38,14,.98) 74%,
+          rgba(212,164,83,.76) 100%
+        );
+      border-radius:999px;
+      box-shadow:
+        0 1px 0 rgba(255,244,213,.18),
+        0 -1px 0 rgba(44,24,8,.86),
+        0 0 8px rgba(205,157,73,.16)
+    }
+    .routing-head__metal-line::after{
+      content:"";
+      position:absolute;
+      left:4%;
+      right:4%;
+      top:1px;
+      height:1px;
+      border-radius:999px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0) 0%,
+          rgba(255,245,216,.12) 12%,
+          rgba(255,245,216,.72) 48%,
+          rgba(255,255,255,.92) 52%,
+          rgba(255,245,216,.28) 68%,
+          rgba(255,255,255,0) 100%
+        );
+      filter:blur(.15px)
+    }
+    .routing-head__metal-line--left::before{
+      clip-path:polygon(0 50%,3% 0,100% 0,100% 100%,3% 100%)
+    }
+    .routing-head__metal-line--right::before{
+      clip-path:polygon(0 0,97% 0,100% 50%,97% 100%,0 100%)
+    }
+
+    .routing-head__diamond{
+      position:relative;
+      width:14px;
+      height:14px;
+      margin-top:13px;
+      transform:rotate(45deg);
+      border:1px solid rgba(232,194,113,.95);
+      background:
+        linear-gradient(135deg,#21150b 0%,#8f632d 30%,#f1d18c 52%,#6f481e 72%,#1b120a 100%);
+      box-shadow:
+        0 0 0 2px rgba(4,8,12,.84),
+        0 0 9px rgba(215,169,86,.20),
+        inset 0 1px 0 rgba(255,244,216,.28),
+        inset 0 -1px 0 rgba(38,21,8,.92)
+    }
+    .routing-head__diamond::after{
+      content:"";
+      position:absolute;
+      inset:3px;
+      border:1px solid rgba(255,226,165,.68);
+      background:rgba(62,38,14,.28)
     }
     .routing-flow{
       position:relative;
@@ -525,6 +627,9 @@
       h2{max-width:100%}
       .routing-showcase{min-height:520px}
       .routing-showcase__content{padding:38px 24px 28px}
+      .routing-head__title{font-size:clamp(1.7rem,6.7vw,2.35rem);letter-spacing:.14em}
+      .routing-head__subtitle{font-size:.82rem;letter-spacing:.24em}
+      .routing-head__subtitle-row{gap:12px}
       .routing-flow{
         margin-top:74px;
         display:flex;
@@ -557,8 +662,14 @@
       .grid{grid-template-columns:1fr}
       .routing-showcase{min-height:490px;border-radius:18px}
       .routing-showcase__content{padding:32px 16px 22px}
-      .routing-showcase__brand{font-size:clamp(1.8rem,9vw,2.55rem)}
-      .routing-showcase__subtitle{font-size:.64rem;letter-spacing:.18em}
+      .routing-head__title{font-size:clamp(1.45rem,8vw,2rem);letter-spacing:.11em}
+      .routing-head__subtitle{font-size:.68rem;letter-spacing:.17em}
+      .routing-head__subtitle-row{
+        grid-template-columns:minmax(28px,1fr) auto minmax(28px,1fr);
+        gap:8px
+      }
+      .routing-head__metal-line{margin-top:11px}
+      .routing-head__diamond{width:12px;height:12px;margin-top:10px}
       .routing-flow{margin-top:62px;margin-left:-4px;margin-right:-4px}
       .routing-step{flex-basis:190px}
       .routing-step__label{font-size:.9rem}
@@ -654,9 +765,16 @@
       <div class="shell">
         <div class="routing-showcase" aria-label="WeatherRouter Routing - Flow - Konzept">
           <div class="routing-showcase__content">
-            <header class="routing-showcase__header">
-              <h2 class="routing-showcase__brand">Weather<span>Router</span></h2>
-              <p class="routing-showcase__subtitle">Routing - Flow - Konzept</p>
+            <header class="routing-showcase__header routing-showcase__header--ornament">
+              <div class="routing-head__title">WeatherRouter</div>
+              <div class="routing-head__subtitle-row">
+                <span class="routing-head__metal-line routing-head__metal-line--left" aria-hidden="true"></span>
+                <div class="routing-head__subtitle-wrap">
+                  <div class="routing-head__subtitle">Routing-Flow – Konzeptübersicht</div>
+                  <div class="routing-head__diamond" aria-hidden="true"></div>
+                </div>
+                <span class="routing-head__metal-line routing-head__metal-line--right" aria-hidden="true"></span>
+              </div>
             </header>
 
             <div class="routing-flow" role="tablist" aria-label="Routing-Stationen">

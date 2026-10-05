@@ -213,57 +213,46 @@
       position:absolute;
       left:0;
       top:0;
-      width:310px;
-      height:220px;
+      width:270px;
+      height:170px;
       pointer-events:none;
       z-index:1;
-      opacity:.88;
-      border-radius:44%;
+      opacity:1;
+      border-radius:22px;
       transform:translate3d(0,0,0);
       transition:
         transform .40s cubic-bezier(.22,.78,.2,1),
         width .24s ease,
         height .24s ease,
-        opacity .20s ease;
+        box-shadow .20s ease,
+        background .20s ease;
       will-change:transform,width,height;
       background:
-        radial-gradient(
-          ellipse at 50% 51%,
-          rgba(236,199,126,.34) 0%,
-          rgba(212,162,72,.20) 24%,
-          rgba(167,108,31,.08) 48%,
-          rgba(0,0,0,0) 70%
-        )
+        radial-gradient(ellipse at 50% 52%,rgba(222,176,86,.11) 0%,rgba(0,0,0,0) 72%);
+      box-shadow:
+        0 0 16px 4px rgba(216,170,82,.20),
+        0 0 36px 10px rgba(177,118,34,.11)
     }
     .routing-showcase__active-glow.is-plain{
       background:
-        radial-gradient(
-          ellipse at 50% 51%,
-          rgba(228,242,252,.32) 0%,
-          rgba(161,198,226,.18) 25%,
-          rgba(94,139,176,.07) 49%,
-          rgba(0,0,0,0) 70%
-        )
+        radial-gradient(ellipse at 50% 52%,rgba(202,229,248,.10) 0%,rgba(0,0,0,0) 72%);
+      box-shadow:
+        0 0 15px 4px rgba(197,224,244,.22),
+        0 0 34px 10px rgba(108,157,196,.11)
     }
     .routing-showcase__active-glow.is-core{
       background:
-        radial-gradient(
-          ellipse at 50% 51%,
-          rgba(255,227,168,.42) 0%,
-          rgba(228,181,90,.23) 24%,
-          rgba(174,112,31,.09) 49%,
-          rgba(0,0,0,0) 71%
-        )
+        radial-gradient(ellipse at 50% 52%,rgba(247,213,148,.13) 0%,rgba(0,0,0,0) 72%);
+      box-shadow:
+        0 0 17px 5px rgba(239,199,119,.30),
+        0 0 40px 12px rgba(191,126,35,.16)
     }
     .routing-showcase__active-glow.is-result{
       background:
-        radial-gradient(
-          ellipse at 50% 51%,
-          rgba(255,235,184,.50) 0%,
-          rgba(244,190,82,.28) 24%,
-          rgba(189,111,22,.10) 50%,
-          rgba(0,0,0,0) 72%
-        )
+        radial-gradient(ellipse at 50% 52%,rgba(255,222,151,.15) 0%,rgba(0,0,0,0) 72%);
+      box-shadow:
+        0 0 18px 5px rgba(255,211,123,.36),
+        0 0 44px 13px rgba(220,143,31,.20)
     }
 
     /* Nur eine sehr dezente innere Lichtkante auf der aktiven Metallplatte. */
@@ -1256,6 +1245,6 @@
     </div>
   </footer>
   <script src="assets/project-page/i18n.js?v=20261005-7" defer></script>
-  <script src="assets/project-page/routing-flow.js?v=20261005-5" defer></script>
+  <script src="assets/project-page/routing-flow.js?v=20261005-6" defer></script>
 </body>
 </html>

@@ -5,9 +5,6 @@
   const panels = Array.from(document.querySelectorAll("[data-routing-panel]"));
   const flow = document.querySelector(".routing-flow");
   const activeLine = document.querySelector(".routing-flow__active-line");
-  const showcase = document.querySelector(".routing-showcase");
-  const activeGlow = document.querySelector(".routing-showcase__active-glow");
-
   if (!tabs.length || !panels.length) return;
 
   function updateActiveLine() {
@@ -29,39 +26,8 @@
     activeLine.style.transform = "translate3d(" + targetLeft + "px,0,0)";
   }
 
-  function updateActiveGlow() {
-    if (!showcase || !activeGlow) return;
-
-    const activeTab = tabs.find(tab => tab.classList.contains("is-active"));
-    const plate = activeTab?.querySelector(".routing-step__plate");
-    if (!activeTab || !plate) return;
-
-    const showcaseRect = showcase.getBoundingClientRect();
-    const plateRect = plate.getBoundingClientRect();
-
-    const glowWidth = Math.max(255, plateRect.width * 1.38);
-    const glowHeight = Math.max(170, plateRect.height * 1.34);
-    const targetLeft =
-      (plateRect.left - showcaseRect.left) +
-      (plateRect.width - glowWidth) / 2;
-    const targetTop =
-      (plateRect.top - showcaseRect.top) +
-      (plateRect.height - glowHeight) / 2 +
-      2;
-
-    activeGlow.style.width = glowWidth + "px";
-    activeGlow.style.height = glowHeight + "px";
-    activeGlow.style.transform =
-      "translate3d(" + targetLeft + "px," + targetTop + "px,0)";
-
-    activeGlow.classList.toggle("is-plain", activeTab.classList.contains("routing-step--plain"));
-    activeGlow.classList.toggle("is-core", activeTab.classList.contains("routing-step--core"));
-    activeGlow.classList.toggle("is-result", activeTab.classList.contains("routing-step--result"));
-  }
-
   function updateIndicators() {
     updateActiveLine();
-    updateActiveGlow();
   }
 
   const ids = new Set(tabs.map(tab => tab.dataset.routingStep));

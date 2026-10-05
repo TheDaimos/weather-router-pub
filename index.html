@@ -93,10 +93,30 @@
     }
     .hero-card img{display:block;width:100%;height:auto;border-radius:15px}
     .caption{margin:12px 4px 0;color:#8f98a6;font-size:.84rem}
-    section{padding:46px 0}
-    .section-head{max-width:790px;margin-bottom:26px}
-    h2{font-size:clamp(1.9rem,4vw,3rem);line-height:1.08;margin:0 0 12px;letter-spacing:-.035em}
-    .section-head p{margin:0;color:var(--muted);font-size:1.05rem}
+    section{padding:62px 0}
+    .section-head{max-width:1060px;margin-bottom:34px}
+    .section-head .eyebrow{
+      display:flex;align-items:center;gap:12px;
+      margin-bottom:18px;
+      font-size:clamp(.92rem,1.35vw,1.06rem);
+      line-height:1.2;letter-spacing:.14em
+    }
+    .section-head .eyebrow::before{
+      content:"";display:block;width:30px;height:2px;flex:0 0 30px;
+      background:linear-gradient(90deg,var(--gold),rgba(208,170,92,.18));
+      border-radius:999px
+    }
+    h2{
+      max-width:1040px;
+      font-size:clamp(2rem,3.35vw,2.85rem);
+      line-height:1.1;margin:0 0 18px;letter-spacing:-.032em;
+      text-wrap:balance
+    }
+    .section-head p{
+      max-width:980px;margin:0;color:var(--muted);
+      font-size:clamp(1rem,1.25vw,1.1rem);line-height:1.7;
+      text-wrap:pretty
+    }
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .card{
       padding:23px;border-radius:18px;
@@ -132,6 +152,8 @@
     footer strong{color:#d7dce4}
     @media (max-width:900px){
       .grid{grid-template-columns:1fr 1fr}
+      .section-head{max-width:100%}
+      h2{max-width:100%}
       .flow{grid-template-columns:1fr 1fr}
       .split{grid-template-columns:1fr}
     }
@@ -142,6 +164,11 @@
       .navlinks{gap:10px}
       .language-picker{margin-left:0;padding-left:8px}
       .language-picker span{display:none}
+      section{padding:48px 0}
+      .section-head{margin-bottom:28px}
+      .section-head .eyebrow{font-size:.9rem;margin-bottom:14px;gap:9px}
+      .section-head .eyebrow::before{width:22px;flex-basis:22px}
+      h2{font-size:clamp(1.85rem,8.2vw,2.35rem);line-height:1.12;margin-bottom:14px}
       .grid,.flow{grid-template-columns:1fr}
       .hero-card{border-radius:18px}
     }
@@ -205,8 +232,7 @@
           <div class="eyebrow">Die Idee</div>
           <h2>Der Consumer sagt, was er braucht. WeatherRouter kennt die Quellen und entscheidet, woher die Daten kommen.</h2>
           <p>
-            WeatherRouter trennt den fachlichen Bedarf von der konkreten Datenquelle.
-            Dadurch bleibt die Auswahl dort, wo Coverage, Datenart, Verfügbarkeit und Routingregeln zusammenlaufen: im Router.
+            WeatherRouter bewertet verfügbare Quellen, berücksichtigt Kontext und Einschränkungen und liefert die passende Ressource samt Provenienz.
           </p>
         </div>
         <div class="grid">
@@ -313,6 +339,6 @@
       WeatherRouter · öffentliche Projektvorstellung
     </div>
   </footer>
-  <script src="assets/project-page/i18n.js?v=20261005-3" defer></script>
+  <script src="assets/project-page/i18n.js?v=20261005-4" defer></script>
 </body>
 </html>

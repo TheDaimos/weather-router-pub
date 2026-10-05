@@ -209,110 +209,33 @@
         0 0 7px rgba(210,161,73,.06)
     }
     /* Safari/iPad-freundlich: ein einziger weicher Gradient statt animierter Filter auf den Karten. */
-    /* Safari/iPad-sicher: Glow direkt an der aktiven Station, ohne Filter und ohne verschiebbare Renderfläche. */
-    .routing-step{
-      isolation:isolate
+    /* Safari/iPad-sicher: kein Glow-Layer mehr, nur Lichtschatten direkt an der Metallplatte. */
+    .routing-step__plate{
+      border-radius:18px
     }
-    .routing-step::before{
-      content:"";
-      position:absolute;
-      left:-11%;
-      right:-11%;
-      top:30px;
-      bottom:-8px;
-      pointer-events:none;
-      z-index:0;
-      opacity:0;
-      transition:opacity .20s ease;
-      background:
-        radial-gradient(
-          ellipse at 50% 13%,
-          rgba(255,235,188,.46) 0%,
-          rgba(239,196,112,.24) 12%,
-          rgba(191,126,37,.08) 31%,
-          rgba(0,0,0,0) 58%
-        ),
-        radial-gradient(
-          ellipse at 50% 87%,
-          rgba(255,218,137,.42) 0%,
-          rgba(221,160,69,.22) 12%,
-          rgba(172,106,28,.07) 31%,
-          rgba(0,0,0,0) 58%
-        ),
-        radial-gradient(
-          ellipse at 9% 52%,
-          rgba(238,195,108,.24) 0%,
-          rgba(191,124,37,.10) 17%,
-          rgba(0,0,0,0) 46%
-        ),
-        radial-gradient(
-          ellipse at 91% 52%,
-          rgba(238,195,108,.24) 0%,
-          rgba(191,124,37,.10) 17%,
-          rgba(0,0,0,0) 46%
-        );
-      background-repeat:no-repeat
+    .routing-step.is-active .routing-step__plate{
+      box-shadow:
+        0 -9px 18px 2px rgba(255,229,174,.22),
+        0 10px 22px 3px rgba(234,177,76,.24),
+        -8px 0 17px 1px rgba(222,171,82,.11),
+        8px 0 17px 1px rgba(222,171,82,.11),
+        0 0 30px 7px rgba(191,126,34,.10)
     }
-    .routing-step.is-active::before{
-      opacity:1
+    .routing-step--plain.is-active .routing-step__plate{
+      box-shadow:
+        0 -9px 18px 2px rgba(230,244,254,.20),
+        0 10px 22px 3px rgba(171,207,233,.22),
+        -8px 0 17px 1px rgba(139,181,213,.10),
+        8px 0 17px 1px rgba(139,181,213,.10),
+        0 0 30px 7px rgba(91,137,173,.09)
     }
-    .routing-step--plain::before{
-      background:
-        radial-gradient(
-          ellipse at 50% 13%,
-          rgba(236,247,255,.42) 0%,
-          rgba(190,219,240,.22) 12%,
-          rgba(121,164,199,.07) 31%,
-          rgba(0,0,0,0) 58%
-        ),
-        radial-gradient(
-          ellipse at 50% 87%,
-          rgba(220,239,252,.38) 0%,
-          rgba(162,199,226,.19) 12%,
-          rgba(101,144,179,.06) 31%,
-          rgba(0,0,0,0) 58%
-        ),
-        radial-gradient(
-          ellipse at 9% 52%,
-          rgba(204,231,248,.20) 0%,
-          rgba(131,173,205,.08) 17%,
-          rgba(0,0,0,0) 46%
-        ),
-        radial-gradient(
-          ellipse at 91% 52%,
-          rgba(204,231,248,.20) 0%,
-          rgba(131,173,205,.08) 17%,
-          rgba(0,0,0,0) 46%
-        )
-    }
-    .routing-step--result::before{
-      background:
-        radial-gradient(
-          ellipse at 50% 13%,
-          rgba(255,244,207,.56) 0%,
-          rgba(255,211,113,.31) 12%,
-          rgba(220,142,34,.10) 31%,
-          rgba(0,0,0,0) 58%
-        ),
-        radial-gradient(
-          ellipse at 50% 87%,
-          rgba(255,224,153,.52) 0%,
-          rgba(241,176,70,.28) 12%,
-          rgba(199,118,25,.09) 31%,
-          rgba(0,0,0,0) 58%
-        ),
-        radial-gradient(
-          ellipse at 9% 52%,
-          rgba(250,208,120,.29) 0%,
-          rgba(208,134,32,.11) 17%,
-          rgba(0,0,0,0) 46%
-        ),
-        radial-gradient(
-          ellipse at 91% 52%,
-          rgba(250,208,120,.29) 0%,
-          rgba(208,134,32,.11) 17%,
-          rgba(0,0,0,0) 46%
-        )
+    .routing-step--result.is-active .routing-step__plate{
+      box-shadow:
+        0 -9px 19px 2px rgba(255,240,199,.30),
+        0 11px 24px 4px rgba(250,190,77,.32),
+        -8px 0 18px 1px rgba(234,177,72,.15),
+        8px 0 18px 1px rgba(234,177,72,.15),
+        0 0 34px 8px rgba(215,137,25,.14)
     }
 
     /* Nur eine sehr dezente innere Lichtkante auf der aktiven Metallplatte. */

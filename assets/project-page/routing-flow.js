@@ -5,6 +5,8 @@
   const panels = Array.from(document.querySelectorAll("[data-routing-panel]"));
   const flow = document.querySelector(".routing-flow");
   const activeLine = document.querySelector(".routing-flow__active-line");
+  const showcase = document.querySelector(".routing-showcase");
+  const activeGlow = document.querySelector(".routing-showcase__active-glow");
 
   if (!tabs.length || !panels.length) return;
 
@@ -25,6 +27,40 @@
 
     activeLine.style.width = targetWidth + "px";
     activeLine.style.transform = "translate3d(" + targetLeft + "px,0,0)";
+  }
+
+  function updateActiveGlow() {
+    if (!showcase || !activeGlow) return;
+
+    const activeTab = tabs.find(tab => tab.classList.contains("is-active"));
+    const plate = activeTab?.querySelector(".routing-step__plate");
+    if (!activeTab || !plate) return;
+
+    const showcaseRect = showcase.getBoundingClientRect();
+    const plateRect = plate.getBoundingClientRect();
+
+    const glowWidth = Math.max(250, plateRect.width * 1.62);
+    const glowHeight = Math.max(190, plateRect.height * 1.52);
+    const targetLeft =
+      (plateRect.left - showcaseRect.left) +
+      (plateRect.width - glowWidth) / 2;
+    const targetTop =
+      (plateRect.top - showcaseRect.top) +
+      (plateRect.height - glowHeight) / 2;
+
+    activeGlow.style.width = glowWidth + "px";
+    activeGlow.style.height = glowHeight + "px";
+    activeGlow.style.transform =
+      "translate3d(" + targetLeft + "px," + targetTop + "px,0)";
+
+    activeGlow.classList.toggle("is-plain", activeTab.classList.contains("routing-step--plain"));
+    activeGlow.classList.toggle("is-core", activeTab.classList.contains("routing-step--core"));
+    activeGlow.classList.toggle("is-result", activeTab.classList.contains("routing-step--result"));
+  }
+
+  function updateIndicators() {
+    updateActiveLine();
+    updateActiveGlow();
   }
 
   const ids = new Set(tabs.map(tab => tab.dataset.routingStep));
@@ -51,7 +87,7 @@
       }
     });
 
-    requestAnimationFrame(updateActiveLine);
+    requestAnimationFrame(updateIndicators);
 
     if (options.updateHash !== false) {
       const target = tabs.find(tab => tab.dataset.routingStep === step);
@@ -90,14 +126,15 @@
   }
 
   window.addEventListener("hashchange", activateFromHash);
-  window.addEventListener("resize", () => requestAnimationFrame(updateActiveLine));
-  window.addEventListener("load", () => requestAnimationFrame(updateActiveLine));
+  window.addEventListener("resize", () => requestAnimationFrame(updateIndicators));
+  window.addEventListener("load", () => requestAnimationFrame(updateIndicators));
+  flow?.addEventListener("scroll", () => requestAnimationFrame(updateIndicators), {passive:true});
 
   if ("ResizeObserver" in window && flow) {
-    const resizeObserver = new ResizeObserver(() => requestAnimationFrame(updateActiveLine));
+    const resizeObserver = new ResizeObserver(() => requestAnimationFrame(updateIndicators));
     resizeObserver.observe(flow);
   }
 
   activateFromHash();
-  requestAnimationFrame(updateActiveLine);
+  requestAnimationFrame(updateIndicators);
 })();

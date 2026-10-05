@@ -131,14 +131,27 @@
     .card h3{margin:8px 0 8px;font-size:1.12rem}
     .card p{margin:0;color:var(--muted);line-height:1.62;text-wrap:pretty}
     .flow{
-      display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch
+      display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:stretch
     }
     .flow div{
+      position:relative;
       min-height:98px;padding:16px;border-radius:15px;border:1px solid rgba(255,255,255,.08);
       background:#10141b;display:flex;align-items:center;justify-content:center;text-align:center;
       color:#d9dee6;font-weight:700
     }
-    .flow div:not(:last-child)::after{content:"→";position:absolute}
+    .flow div:not(:last-child)::after{
+      content:"→";
+      position:absolute;
+      top:50%;
+      right:-15px;
+      transform:translateY(-50%);
+      color:var(--gold);
+      font-size:1rem;
+      font-weight:800;
+      line-height:1;
+      z-index:2;
+      pointer-events:none
+    }
     .split{display:grid;grid-template-columns:1.14fr .86fr;gap:18px}
     .quote{
       padding:30px;border-radius:20px;border:1px solid var(--line);
@@ -162,6 +175,7 @@
       .section-head{max-width:100%}
       h2{max-width:100%}
       .flow{grid-template-columns:1fr 1fr}
+      .flow div::after{display:none}
       .split{grid-template-columns:1fr}
     }
     @media (max-width:620px){

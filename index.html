@@ -213,12 +213,11 @@
       position:absolute;
       left:0;
       top:0;
-      width:300px;
-      height:205px;
+      width:292px;
+      height:196px;
       pointer-events:none;
       z-index:1;
       opacity:1;
-      border-radius:42%;
       transform:translate3d(0,0,0);
       transition:
         transform .40s cubic-bezier(.22,.78,.2,1),
@@ -228,95 +227,35 @@
         opacity .20s ease;
       will-change:transform,width,height;
       background:
-        radial-gradient(
-          ellipse at 50% 53%,
-          rgba(239,202,132,.48) 0%,
-          rgba(219,171,80,.28) 28%,
-          rgba(174,112,30,.12) 51%,
-          rgba(111,66,15,.045) 64%,
-          rgba(0,0,0,0) 75%
-        );
-      box-shadow:
-        0 0 18px rgba(216,167,75,.10)
-    }
-    .routing-showcase__active-glow::after{
-      content:"";
-      position:absolute;
-      left:19%;
-      right:19%;
-      bottom:7%;
-      height:15%;
-      border-radius:50%;
-      background:radial-gradient(
-        ellipse at center,
-        rgba(231,188,103,.24) 0%,
-        rgba(188,126,40,.10) 48%,
-        rgba(0,0,0,0) 76%
-      );
-      pointer-events:none
+        radial-gradient(ellipse at 50% 50%,rgba(239,202,129,.26) 0%,rgba(214,165,76,.14) 31%,rgba(165,104,28,.055) 52%,rgba(0,0,0,0) 74%),
+        radial-gradient(ellipse at 50% 14%,rgba(255,224,158,.22) 0%,rgba(208,152,58,.09) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 50% 86%,rgba(245,197,106,.24) 0%,rgba(190,126,35,.10) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 14% 52%,rgba(227,181,90,.13) 0%,rgba(0,0,0,0) 68%),
+        radial-gradient(ellipse at 86% 52%,rgba(227,181,90,.13) 0%,rgba(0,0,0,0) 68%)
     }
     .routing-showcase__active-glow.is-plain{
       background:
-        radial-gradient(
-          ellipse at 50% 53%,
-          rgba(228,243,253,.46) 0%,
-          rgba(168,204,231,.26) 28%,
-          rgba(100,145,181,.11) 51%,
-          rgba(59,98,132,.04) 64%,
-          rgba(0,0,0,0) 75%
-        );
-      box-shadow:
-        0 0 17px rgba(171,209,237,.10)
-    }
-    .routing-showcase__active-glow.is-plain::after{
-      background:radial-gradient(
-        ellipse at center,
-        rgba(181,217,241,.22) 0%,
-        rgba(102,152,190,.09) 48%,
-        rgba(0,0,0,0) 76%
-      )
+        radial-gradient(ellipse at 50% 50%,rgba(223,240,252,.24) 0%,rgba(159,196,224,.13) 31%,rgba(94,137,172,.05) 52%,rgba(0,0,0,0) 74%),
+        radial-gradient(ellipse at 50% 14%,rgba(232,246,255,.20) 0%,rgba(144,185,215,.08) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 50% 86%,rgba(208,232,248,.20) 0%,rgba(116,160,194,.08) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 14% 52%,rgba(178,211,235,.11) 0%,rgba(0,0,0,0) 68%),
+        radial-gradient(ellipse at 86% 52%,rgba(178,211,235,.11) 0%,rgba(0,0,0,0) 68%)
     }
     .routing-showcase__active-glow.is-core{
       background:
-        radial-gradient(
-          ellipse at 50% 53%,
-          rgba(255,231,177,.58) 0%,
-          rgba(235,190,101,.34) 27%,
-          rgba(190,126,35,.14) 51%,
-          rgba(124,73,16,.05) 65%,
-          rgba(0,0,0,0) 76%
-        );
-      box-shadow:
-        0 0 20px rgba(223,176,86,.13)
-    }
-    .routing-showcase__active-glow.is-core::after{
-      background:radial-gradient(
-        ellipse at center,
-        rgba(239,195,108,.30) 0%,
-        rgba(187,122,34,.12) 48%,
-        rgba(0,0,0,0) 76%
-      )
+        radial-gradient(ellipse at 50% 50%,rgba(255,226,166,.32) 0%,rgba(232,183,91,.18) 30%,rgba(179,113,29,.07) 52%,rgba(0,0,0,0) 74%),
+        radial-gradient(ellipse at 50% 14%,rgba(255,235,185,.30) 0%,rgba(220,162,66,.12) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 50% 86%,rgba(255,215,131,.32) 0%,rgba(205,137,39,.13) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 14% 52%,rgba(240,194,104,.17) 0%,rgba(0,0,0,0) 68%),
+        radial-gradient(ellipse at 86% 52%,rgba(240,194,104,.17) 0%,rgba(0,0,0,0) 68%)
     }
     .routing-showcase__active-glow.is-result{
       background:
-        radial-gradient(
-          ellipse at 50% 53%,
-          rgba(255,239,194,.66) 0%,
-          rgba(250,200,96,.40) 27%,
-          rgba(211,137,31,.17) 52%,
-          rgba(145,79,13,.06) 66%,
-          rgba(0,0,0,0) 77%
-        );
-      box-shadow:
-        0 0 22px rgba(237,183,72,.15)
-    }
-    .routing-showcase__active-glow.is-result::after{
-      background:radial-gradient(
-        ellipse at center,
-        rgba(255,205,103,.34) 0%,
-        rgba(210,131,27,.14) 48%,
-        rgba(0,0,0,0) 76%
-      )
+        radial-gradient(ellipse at 50% 50%,rgba(255,237,189,.36) 0%,rgba(244,194,88,.21) 30%,rgba(199,124,25,.08) 52%,rgba(0,0,0,0) 74%),
+        radial-gradient(ellipse at 50% 14%,rgba(255,240,199,.34) 0%,rgba(238,176,65,.14) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 50% 86%,rgba(255,220,137,.36) 0%,rgba(222,143,34,.15) 42%,rgba(0,0,0,0) 72%),
+        radial-gradient(ellipse at 14% 52%,rgba(250,204,111,.19) 0%,rgba(0,0,0,0) 68%),
+        radial-gradient(ellipse at 86% 52%,rgba(250,204,111,.19) 0%,rgba(0,0,0,0) 68%)
     }
 
     /* Nur eine sehr dezente innere Lichtkante auf der aktiven Metallplatte. */
@@ -1319,6 +1258,6 @@
     </div>
   </footer>
   <script src="assets/project-page/i18n.js?v=20261005-7" defer></script>
-  <script src="assets/project-page/routing-flow.js?v=20261005-7" defer></script>
+  <script src="assets/project-page/routing-flow.js?v=20261005-8" defer></script>
 </body>
 </html>

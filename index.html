@@ -451,7 +451,15 @@
       text-align:center;
       border-radius:18px;
       position:relative;
-      z-index:2
+      z-index:2;
+      -webkit-tap-highlight-color:transparent;
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      user-select:none;
+      touch-action:manipulation
+    }
+    .routing-step:active{
+      background:transparent
     }
     .routing-step__topic{
       position:relative;
@@ -754,6 +762,60 @@
     }
     footer{padding:40px 0 60px;color:#929aa7;border-top:1px solid rgba(255,255,255,.06);margin-top:30px}
     footer strong{color:#d7dce4}
+    /* Glow-Tuning: Desktop etwas kräftiger, iPad unverändert, kleine Touch-Geräte moderat stärker. */
+    @media (hover:hover) and (pointer:fine){
+      .routing-step.is-active .routing-step__plate{
+        box-shadow:
+          0 -10px 21px 3px rgba(255,229,174,.30),
+          0 11px 25px 4px rgba(234,177,76,.32),
+          -9px 0 19px 2px rgba(222,171,82,.15),
+          9px 0 19px 2px rgba(222,171,82,.15),
+          0 0 34px 9px rgba(191,126,34,.14)
+      }
+      .routing-step--plain.is-active .routing-step__plate{
+        box-shadow:
+          0 -10px 21px 3px rgba(230,244,254,.27),
+          0 11px 25px 4px rgba(171,207,233,.30),
+          -9px 0 19px 2px rgba(139,181,213,.14),
+          9px 0 19px 2px rgba(139,181,213,.14),
+          0 0 34px 9px rgba(91,137,173,.12)
+      }
+      .routing-step--result.is-active .routing-step__plate{
+        box-shadow:
+          0 -10px 22px 3px rgba(255,240,199,.38),
+          0 12px 27px 5px rgba(250,190,77,.41),
+          -9px 0 20px 2px rgba(234,177,72,.20),
+          9px 0 20px 2px rgba(234,177,72,.20),
+          0 0 38px 10px rgba(215,137,25,.18)
+      }
+    }
+    @media (hover:none) and (pointer:coarse) and (max-width:620px){
+      .routing-step.is-active .routing-step__plate{
+        box-shadow:
+          0 -10px 20px 2px rgba(255,229,174,.27),
+          0 11px 24px 4px rgba(234,177,76,.29),
+          -8px 0 18px 1px rgba(222,171,82,.14),
+          8px 0 18px 1px rgba(222,171,82,.14),
+          0 0 33px 8px rgba(191,126,34,.13)
+      }
+      .routing-step--plain.is-active .routing-step__plate{
+        box-shadow:
+          0 -10px 20px 2px rgba(230,244,254,.25),
+          0 11px 24px 4px rgba(171,207,233,.27),
+          -8px 0 18px 1px rgba(139,181,213,.13),
+          8px 0 18px 1px rgba(139,181,213,.13),
+          0 0 33px 8px rgba(91,137,173,.11)
+      }
+      .routing-step--result.is-active .routing-step__plate{
+        box-shadow:
+          0 -10px 21px 2px rgba(255,240,199,.35),
+          0 12px 26px 5px rgba(250,190,77,.38),
+          -8px 0 19px 1px rgba(234,177,72,.18),
+          8px 0 19px 1px rgba(234,177,72,.18),
+          0 0 36px 9px rgba(215,137,25,.17)
+      }
+    }
+
     @media (max-width:900px){
       .grid{grid-template-columns:1fr 1fr}
       .section-head{max-width:100%}

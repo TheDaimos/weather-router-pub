@@ -3,8 +3,29 @@
 
   const tabs = Array.from(document.querySelectorAll("[data-routing-step]"));
   const panels = Array.from(document.querySelectorAll("[data-routing-panel]"));
+  const flow = document.querySelector(".routing-flow");
+  const activeLine = document.querySelector(".routing-flow__active-line");
 
   if (!tabs.length || !panels.length) return;
+
+  function updateActiveLine() {
+    if (!flow || !activeLine) return;
+
+    const activeTab = tabs.find(tab => tab.classList.contains("is-active"));
+    const plate = activeTab?.querySelector(".routing-step__plate");
+    if (!plate) return;
+
+    const flowRect = flow.getBoundingClientRect();
+    const plateRect = plate.getBoundingClientRect();
+    const targetWidth = Math.max(86, Math.min(132, plateRect.width * 0.62));
+    const targetLeft =
+      (plateRect.left - flowRect.left) +
+      flow.scrollLeft +
+      (plateRect.width - targetWidth) / 2;
+
+    activeLine.style.width = targetWidth + "px";
+    activeLine.style.transform = "translate3d(" + targetLeft + "px,0,0)";
+  }
 
   const ids = new Set(tabs.map(tab => tab.dataset.routingStep));
 
@@ -29,6 +50,8 @@
         panel.classList.remove("is-entering");
       }
     });
+
+    requestAnimationFrame(updateActiveLine);
 
     if (options.updateHash !== false) {
       const target = tabs.find(tab => tab.dataset.routingStep === step);
@@ -67,5 +90,14 @@
   }
 
   window.addEventListener("hashchange", activateFromHash);
+  window.addEventListener("resize", () => requestAnimationFrame(updateActiveLine));
+  window.addEventListener("load", () => requestAnimationFrame(updateActiveLine));
+
+  if ("ResizeObserver" in window && flow) {
+    const resizeObserver = new ResizeObserver(() => requestAnimationFrame(updateActiveLine));
+    resizeObserver.observe(flow);
+  }
+
   activateFromHash();
+  requestAnimationFrame(updateActiveLine);
 })();

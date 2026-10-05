@@ -209,53 +209,110 @@
         0 0 7px rgba(210,161,73,.06)
     }
     /* Safari/iPad-freundlich: ein einziger weicher Gradient statt animierter Filter auf den Karten. */
-    .routing-showcase__active-glow{
+    /* Safari/iPad-sicher: Glow direkt an der aktiven Station, ohne Filter und ohne verschiebbare Renderfläche. */
+    .routing-step{
+      isolation:isolate
+    }
+    .routing-step::before{
+      content:"";
       position:absolute;
-      left:0;
-      top:0;
-      width:292px;
-      height:196px;
+      left:-11%;
+      right:-11%;
+      top:30px;
+      bottom:-8px;
       pointer-events:none;
-      z-index:1;
-      opacity:1;
-      transform:translate3d(0,0,0);
-      transition:
-        transform .40s cubic-bezier(.22,.78,.2,1),
-        width .24s ease,
-        height .24s ease,
-        background .20s ease,
-        opacity .20s ease;
-      will-change:transform,width,height;
+      z-index:0;
+      opacity:0;
+      transition:opacity .20s ease;
       background:
-        radial-gradient(ellipse at 50% 50%,rgba(239,202,129,.26) 0%,rgba(214,165,76,.14) 31%,rgba(165,104,28,.055) 52%,rgba(0,0,0,0) 74%),
-        radial-gradient(ellipse at 50% 14%,rgba(255,224,158,.22) 0%,rgba(208,152,58,.09) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 50% 86%,rgba(245,197,106,.24) 0%,rgba(190,126,35,.10) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 14% 52%,rgba(227,181,90,.13) 0%,rgba(0,0,0,0) 68%),
-        radial-gradient(ellipse at 86% 52%,rgba(227,181,90,.13) 0%,rgba(0,0,0,0) 68%)
+        radial-gradient(
+          ellipse at 50% 13%,
+          rgba(255,235,188,.46) 0%,
+          rgba(239,196,112,.24) 12%,
+          rgba(191,126,37,.08) 31%,
+          rgba(0,0,0,0) 58%
+        ),
+        radial-gradient(
+          ellipse at 50% 87%,
+          rgba(255,218,137,.42) 0%,
+          rgba(221,160,69,.22) 12%,
+          rgba(172,106,28,.07) 31%,
+          rgba(0,0,0,0) 58%
+        ),
+        radial-gradient(
+          ellipse at 9% 52%,
+          rgba(238,195,108,.24) 0%,
+          rgba(191,124,37,.10) 17%,
+          rgba(0,0,0,0) 46%
+        ),
+        radial-gradient(
+          ellipse at 91% 52%,
+          rgba(238,195,108,.24) 0%,
+          rgba(191,124,37,.10) 17%,
+          rgba(0,0,0,0) 46%
+        );
+      background-repeat:no-repeat
     }
-    .routing-showcase__active-glow.is-plain{
-      background:
-        radial-gradient(ellipse at 50% 50%,rgba(223,240,252,.24) 0%,rgba(159,196,224,.13) 31%,rgba(94,137,172,.05) 52%,rgba(0,0,0,0) 74%),
-        radial-gradient(ellipse at 50% 14%,rgba(232,246,255,.20) 0%,rgba(144,185,215,.08) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 50% 86%,rgba(208,232,248,.20) 0%,rgba(116,160,194,.08) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 14% 52%,rgba(178,211,235,.11) 0%,rgba(0,0,0,0) 68%),
-        radial-gradient(ellipse at 86% 52%,rgba(178,211,235,.11) 0%,rgba(0,0,0,0) 68%)
+    .routing-step.is-active::before{
+      opacity:1
     }
-    .routing-showcase__active-glow.is-core{
+    .routing-step--plain::before{
       background:
-        radial-gradient(ellipse at 50% 50%,rgba(255,226,166,.32) 0%,rgba(232,183,91,.18) 30%,rgba(179,113,29,.07) 52%,rgba(0,0,0,0) 74%),
-        radial-gradient(ellipse at 50% 14%,rgba(255,235,185,.30) 0%,rgba(220,162,66,.12) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 50% 86%,rgba(255,215,131,.32) 0%,rgba(205,137,39,.13) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 14% 52%,rgba(240,194,104,.17) 0%,rgba(0,0,0,0) 68%),
-        radial-gradient(ellipse at 86% 52%,rgba(240,194,104,.17) 0%,rgba(0,0,0,0) 68%)
+        radial-gradient(
+          ellipse at 50% 13%,
+          rgba(236,247,255,.42) 0%,
+          rgba(190,219,240,.22) 12%,
+          rgba(121,164,199,.07) 31%,
+          rgba(0,0,0,0) 58%
+        ),
+        radial-gradient(
+          ellipse at 50% 87%,
+          rgba(220,239,252,.38) 0%,
+          rgba(162,199,226,.19) 12%,
+          rgba(101,144,179,.06) 31%,
+          rgba(0,0,0,0) 58%
+        ),
+        radial-gradient(
+          ellipse at 9% 52%,
+          rgba(204,231,248,.20) 0%,
+          rgba(131,173,205,.08) 17%,
+          rgba(0,0,0,0) 46%
+        ),
+        radial-gradient(
+          ellipse at 91% 52%,
+          rgba(204,231,248,.20) 0%,
+          rgba(131,173,205,.08) 17%,
+          rgba(0,0,0,0) 46%
+        )
     }
-    .routing-showcase__active-glow.is-result{
+    .routing-step--result::before{
       background:
-        radial-gradient(ellipse at 50% 50%,rgba(255,237,189,.36) 0%,rgba(244,194,88,.21) 30%,rgba(199,124,25,.08) 52%,rgba(0,0,0,0) 74%),
-        radial-gradient(ellipse at 50% 14%,rgba(255,240,199,.34) 0%,rgba(238,176,65,.14) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 50% 86%,rgba(255,220,137,.36) 0%,rgba(222,143,34,.15) 42%,rgba(0,0,0,0) 72%),
-        radial-gradient(ellipse at 14% 52%,rgba(250,204,111,.19) 0%,rgba(0,0,0,0) 68%),
-        radial-gradient(ellipse at 86% 52%,rgba(250,204,111,.19) 0%,rgba(0,0,0,0) 68%)
+        radial-gradient(
+          ellipse at 50% 13%,
+          rgba(255,244,207,.56) 0%,
+          rgba(255,211,113,.31) 12%,
+          rgba(220,142,34,.10) 31%,
+          rgba(0,0,0,0) 58%
+        ),
+        radial-gradient(
+          ellipse at 50% 87%,
+          rgba(255,224,153,.52) 0%,
+          rgba(241,176,70,.28) 12%,
+          rgba(199,118,25,.09) 31%,
+          rgba(0,0,0,0) 58%
+        ),
+        radial-gradient(
+          ellipse at 9% 52%,
+          rgba(250,208,120,.29) 0%,
+          rgba(208,134,32,.11) 17%,
+          rgba(0,0,0,0) 46%
+        ),
+        radial-gradient(
+          ellipse at 91% 52%,
+          rgba(250,208,120,.29) 0%,
+          rgba(208,134,32,.11) 17%,
+          rgba(0,0,0,0) 46%
+        )
     }
 
     /* Nur eine sehr dezente innere Lichtkante auf der aktiven Metallplatte. */
@@ -474,6 +531,8 @@
       z-index:2
     }
     .routing-step__topic{
+      position:relative;
+      z-index:1;
       min-height:34px;
       display:flex;
       flex-direction:column;
@@ -498,6 +557,7 @@
     }
     .routing-step__plate{
       position:relative;
+      z-index:1;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -915,7 +975,6 @@
     <section id="prinzip">
       <div class="shell">
         <div class="routing-showcase" aria-label="WeatherRouter Routing - Flow - Konzept">
-          <span class="routing-showcase__active-glow is-plain" aria-hidden="true"></span>
           <div class="routing-showcase__content">
             <header class="routing-showcase__header routing-showcase__header--ornament">
               <div class="routing-head__title">WeatherRouter</div>
@@ -1258,6 +1317,6 @@
     </div>
   </footer>
   <script src="assets/project-page/i18n.js?v=20261005-7" defer></script>
-  <script src="assets/project-page/routing-flow.js?v=20261005-8" defer></script>
+  <script src="assets/project-page/routing-flow.js?v=20261005-9" defer></script>
 </body>
 </html>

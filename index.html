@@ -202,6 +202,63 @@
     .routing-step--result.is-active .routing-step__plate::after{
       background:radial-gradient(ellipse at 50% 12%,rgba(255,224,150,.20),rgba(255,255,255,0) 56%)
     }
+    /* Zusätzlicher äußerer Metallrahmen: bewusst klar außerhalb des im Bild eingebetteten Rahmens. */
+    .routing-showcase::before{
+      content:"";
+      position:absolute;
+      inset:9px;
+      padding:1px;
+      pointer-events:none;
+      z-index:5;
+      clip-path:polygon(
+        11px 0,
+        calc(100% - 11px) 0,
+        100% 11px,
+        100% calc(100% - 11px),
+        calc(100% - 11px) 100%,
+        11px 100%,
+        0 calc(100% - 11px),
+        0 11px
+      );
+      background:
+        linear-gradient(
+          135deg,
+          #3d240d 0%,
+          #9a662a 8%,
+          #f0cf86 17%,
+          #6d4319 32%,
+          #2b1808 47%,
+          #bd8741 62%,
+          #ffe5a6 74%,
+          #80501d 88%,
+          #321c09 100%
+        );
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.66
+    }
+    .routing-showcase::after{
+      content:"";
+      position:absolute;
+      inset:11px;
+      pointer-events:none;
+      z-index:4;
+      clip-path:polygon(
+        10px 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        10px 100%,
+        0 calc(100% - 10px),
+        0 10px
+      );
+      border:1px solid rgba(246,210,139,.08)
+    }
+
     .routing-showcase__content{
       position:relative;
       z-index:2;

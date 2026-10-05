@@ -141,7 +141,7 @@
     .routing-showcase{
       position:relative;
       overflow:hidden;
-      min-height:clamp(540px,56.28vw,664px);
+      min-height:clamp(500px,51.7vw,610px);
       border-radius:24px;
       background:
         url("assets/routing-flow/webp/routing-showcase-bg.webp") center/100% 100% no-repeat,
@@ -161,7 +161,7 @@
       position:relative;
       z-index:1;
       min-height:inherit;
-      padding:48px 34px 44px;
+      padding:42px 34px 30px;
       display:flex;
       flex-direction:column
     }
@@ -190,8 +190,10 @@
       text-shadow:0 1px 0 rgba(0,0,0,.8),0 0 14px rgba(226,197,139,.14)
     }
     .routing-flow{
+      position:relative;
       width:100%;
-      margin-top:clamp(66px,8.2vw,98px);
+      margin-top:clamp(56px,6.8vw,80px);
+      padding-bottom:34px;
       display:grid;
       grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);
       gap:7px;
@@ -274,8 +276,37 @@
       filter:brightness(1.06) drop-shadow(0 17px 22px rgba(0,0,0,.38))
     }
     .routing-step.is-active .routing-step__plate{
-      transform:translateY(-4px) scale(1.018);
-      filter:brightness(1.08) drop-shadow(0 0 12px rgba(230,185,93,.28)) drop-shadow(0 18px 23px rgba(0,0,0,.40))
+      transform:translateY(-5px) scale(1.025);
+      filter:
+        brightness(1.14)
+        saturate(1.06)
+        drop-shadow(0 0 12px rgba(232,194,115,.52))
+        drop-shadow(0 0 28px rgba(208,170,92,.34))
+        drop-shadow(0 20px 25px rgba(0,0,0,.46))
+    }
+    .routing-step--plain.is-active .routing-step__plate{
+      filter:
+        brightness(1.16)
+        saturate(1.03)
+        drop-shadow(0 0 10px rgba(220,235,248,.54))
+        drop-shadow(0 0 26px rgba(141,183,216,.32))
+        drop-shadow(0 20px 25px rgba(0,0,0,.46))
+    }
+    .routing-step--core.is-active .routing-step__plate{
+      filter:
+        brightness(1.15)
+        saturate(1.07)
+        drop-shadow(0 0 12px rgba(244,211,145,.58))
+        drop-shadow(0 0 30px rgba(205,155,65,.38))
+        drop-shadow(0 20px 25px rgba(0,0,0,.46))
+    }
+    .routing-step--result.is-active .routing-step__plate{
+      filter:
+        brightness(1.18)
+        saturate(1.12)
+        drop-shadow(0 0 13px rgba(255,224,154,.72))
+        drop-shadow(0 0 34px rgba(224,157,42,.48))
+        drop-shadow(0 20px 26px rgba(0,0,0,.48))
     }
     .routing-step:focus-visible{
       outline:2px solid rgba(231,199,134,.9);
@@ -308,6 +339,57 @@
         0 0 14px rgba(208,170,92,.22),
         inset 0 1px 0 rgba(255,244,216,.28),
         inset 0 -1px 0 rgba(0,0,0,.72)
+    }
+    .routing-flow__active-line{
+      position:absolute;
+      left:0;
+      bottom:3px;
+      width:108px;
+      height:8px;
+      pointer-events:none;
+      opacity:1;
+      transform:translate3d(0,0,0);
+      transition:
+        transform .42s cubic-bezier(.22,.78,.2,1),
+        width .30s ease;
+      z-index:5;
+      will-change:transform,width
+    }
+    .routing-flow__active-line::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:50%;
+      height:1px;
+      transform:translateY(-50%);
+      background:linear-gradient(
+        90deg,
+        rgba(83,50,17,0) 0%,
+        rgba(122,75,32,.66) 12%,
+        #e7c786 46%,
+        #fff0c7 52%,
+        #d7aa52 60%,
+        rgba(122,75,32,.58) 88%,
+        rgba(83,50,17,0) 100%
+      );
+      box-shadow:
+        0 1px 0 rgba(255,240,205,.12),
+        0 0 7px rgba(231,199,134,.24)
+    }
+    .routing-flow__active-line::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:7px;
+      height:7px;
+      transform:translate(-50%,-50%) rotate(45deg);
+      border:1px solid rgba(231,199,134,.72);
+      background:linear-gradient(135deg,#2e2113,#d0aa5c 52%,#4a3017);
+      box-shadow:
+        0 0 0 2px rgba(5,8,12,.72),
+        0 0 9px rgba(208,170,92,.26)
     }
     .routing-details{
       margin-top:24px;
@@ -441,8 +523,8 @@
       .grid{grid-template-columns:1fr 1fr}
       .section-head{max-width:100%}
       h2{max-width:100%}
-      .routing-showcase{min-height:560px}
-      .routing-showcase__content{padding:42px 24px 36px}
+      .routing-showcase{min-height:520px}
+      .routing-showcase__content{padding:38px 24px 28px}
       .routing-flow{
         margin-top:74px;
         display:flex;
@@ -473,8 +555,8 @@
       .section-head .eyebrow::after{width:120px}
       h2{font-size:clamp(1.8rem,7.6vw,2.25rem);line-height:1.14;margin-bottom:14px}
       .grid{grid-template-columns:1fr}
-      .routing-showcase{min-height:520px;border-radius:18px}
-      .routing-showcase__content{padding:34px 16px 28px}
+      .routing-showcase{min-height:490px;border-radius:18px}
+      .routing-showcase__content{padding:32px 16px 22px}
       .routing-showcase__brand{font-size:clamp(1.8rem,9vw,2.55rem)}
       .routing-showcase__subtitle{font-size:.64rem;letter-spacing:.18em}
       .routing-flow{margin-top:62px;margin-left:-4px;margin-right:-4px}
@@ -655,6 +737,8 @@
                   <span class="routing-step__label">Ergebnis bereitstellen</span>
                 </span>
               </button>
+
+              <span class="routing-flow__active-line" aria-hidden="true"></span>
             </div>
           </div>
         </div>
@@ -902,6 +986,6 @@
     </div>
   </footer>
   <script src="assets/project-page/i18n.js?v=20261005-6" defer></script>
-  <script src="assets/project-page/routing-flow.js?v=20261005-1" defer></script>
+  <script src="assets/project-page/routing-flow.js?v=20261005-2" defer></script>
 </body>
 </html>

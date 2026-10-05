@@ -39,15 +39,15 @@
     const showcaseRect = showcase.getBoundingClientRect();
     const plateRect = plate.getBoundingClientRect();
 
-    const glowWidth = Math.max(245, plateRect.width * 1.42);
-    const glowHeight = Math.max(155, plateRect.height * 1.18);
+    const glowWidth = Math.max(220, plateRect.width * 1.08);
+    const glowHeight = Math.max(145, plateRect.height * 0.98);
     const targetLeft =
       (plateRect.left - showcaseRect.left) +
       (plateRect.width - glowWidth) / 2;
     const targetTop =
       (plateRect.top - showcaseRect.top) +
       (plateRect.height - glowHeight) / 2 +
-      Math.min(10, plateRect.height * 0.05);
+      2;
 
     activeGlow.style.width = glowWidth + "px";
     activeGlow.style.height = glowHeight + "px";

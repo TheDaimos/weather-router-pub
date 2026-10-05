@@ -50,8 +50,20 @@
     .brand{font-weight:800;letter-spacing:.02em}
     .brand span{color:var(--gold)}
     .navlinks{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+    .navlinks{align-items:center}
     .navlinks a{font-size:.92rem;color:var(--muted);text-decoration:none}
     .navlinks a:hover{color:var(--text)}
+    .language-picker{
+      display:inline-flex;align-items:center;gap:7px;margin-left:4px;
+      padding-left:12px;border-left:1px solid rgba(255,255,255,.1)
+    }
+    .language-picker span{font-size:.78rem;color:#8f98a6}
+    .language-picker select{
+      min-height:34px;padding:0 30px 0 10px;border-radius:9px;
+      border:1px solid var(--line);color:var(--text);
+      background:#10141b;font:inherit;font-size:.84rem;cursor:pointer
+    }
+    .language-picker select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     .hero{padding:70px 0 38px}
     .eyebrow{
       color:var(--gold);font-size:.78rem;text-transform:uppercase;
@@ -128,6 +140,8 @@
       .hero{padding-top:48px}
       .nav{align-items:flex-start;padding:14px 0}
       .navlinks{gap:10px}
+      .language-picker{margin-left:0;padding-left:8px}
+      .language-picker span{display:none}
       .grid,.flow{grid-template-columns:1fr}
       .hero-card{border-radius:18px}
     }
@@ -142,6 +156,18 @@
         <a href="#prinzip">Routing</a>
         <a href="#architektur">Architektur</a>
         <a href="https://github.com/TheDaimos/weather-router-pub" rel="noopener noreferrer">GitHub</a>
+        <label class="language-picker" for="language-select">
+          <span>Sprache</span>
+          <select id="language-select" aria-label="Sprache auswählen">
+            <option value="de">DE · Deutsch</option>
+            <option value="en">EN · English</option>
+            <option value="fr">FR · Français</option>
+            <option value="es">ES · Español</option>
+            <option value="it">IT · Italiano</option>
+            <option value="nl">NL · Nederlands</option>
+            <option value="pl">PL · Polski</option>
+          </select>
+        </label>
       </nav>
     </div>
   </header>
@@ -287,5 +313,6 @@
       WeatherRouter · öffentliche Projektvorstellung
     </div>
   </footer>
+  <script src="assets/project-page/i18n.js?v=20261005-1" defer></script>
 </body>
 </html>

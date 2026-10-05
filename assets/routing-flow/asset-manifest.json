@@ -1,0 +1,30 @@
+{
+  "package": "WeatherRouter Routing Flow Assets",
+  "source_concept": "weatherrouter-routing-flow-selected-concept.png",
+  "assets": {
+    "routing-showcase-bg": {
+      "purpose": "Stage background with dark Earth atmosphere and complete gold frame; no embedded copy or stations.",
+      "png": "png/routing-showcase-bg.png",
+      "webp": "webp/routing-showcase-bg.webp",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    "routing-plate-plain": {
+      "purpose": "Bedarf / Anforderung erfassen. Brushed metal, no gold inner line.",
+      "png": "png/routing-plate-plain.png",
+      "webp": "webp/routing-plate-plain.webp"
+    },
+    "routing-plate-core": {
+      "purpose": "Providerwahl, Prüfung, Abdeckung. Dark brushed metal with delicate gold inner line.",
+      "png": "png/routing-plate-core.png",
+      "webp": "webp/routing-plate-core.webp"
+    },
+    "routing-plate-result": {
+      "purpose": "Ergebnis. Dark brushed metal with stronger premium gold frame.",
+      "png": "png/routing-plate-result.png",
+      "webp": "webp/routing-plate-result.webp"
+    }
+  }
+}

@@ -175,7 +175,7 @@
       position:relative;
       min-height:108px;
       padding:18px 16px;
-      border-radius:16px;
+      border-radius:15px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -183,22 +183,69 @@
       font-size:1.02rem;
       line-height:1.35;
       font-weight:760;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 28px rgba(0,0,0,.16)
-    }
-    .flow-step.edge .flow-card{
-      border:1px solid rgba(21,214,252,.42);
+      color:#f4f6f8;
+      overflow:visible;
       background:
-        linear-gradient(180deg,rgba(21,214,252,.12),rgba(21,214,252,.035)),
-        #10141b;
-      color:#edfaff
+        linear-gradient(105deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.025) 18%,transparent 38%,rgba(255,255,255,.035) 62%,transparent 82%),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,rgba(0,0,0,.025) 1px 2px),
+        linear-gradient(180deg,#343b44 0%,#242a31 48%,#171b21 100%);
+      border:1px solid rgba(187,196,205,.50);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.20),
+        inset 0 -1px 0 rgba(0,0,0,.68),
+        0 12px 28px rgba(0,0,0,.24);
+      text-shadow:0 1px 0 rgba(0,0,0,.72)
     }
-    .flow-step.core .flow-card{
-      border:1px solid var(--line);
+
+    /* Bedarf: Variante C ohne Gold – schlichte, gebürstete Metallplatte. */
+    .flow-step:first-child .flow-card{
       background:
-        linear-gradient(180deg,rgba(208,170,92,.13),rgba(208,170,92,.035)),
-        #10141b;
-      color:#f5f0e5
+        linear-gradient(105deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.035) 19%,transparent 42%,rgba(255,255,255,.055) 64%,transparent 84%),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,rgba(0,0,0,.028) 1px 2px),
+        linear-gradient(180deg,#454d56 0%,#303740 48%,#1d2229 100%);
+      border-color:rgba(205,213,220,.64);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.30),
+        inset 0 0 0 5px rgba(14,17,22,.48),
+        inset 0 -1px 0 rgba(0,0,0,.76),
+        0 12px 28px rgba(0,0,0,.24)
     }
+
+    /* Routingkern: Variante C – dunkles Metall mit feiner goldener Innenlinie. */
+    .flow-step:nth-child(2) .flow-card,
+    .flow-step:nth-child(3) .flow-card,
+    .flow-step:nth-child(4) .flow-card{
+      background:
+        linear-gradient(105deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.02) 18%,transparent 40%,rgba(255,255,255,.03) 63%,transparent 84%),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.016) 0 1px,rgba(0,0,0,.027) 1px 2px),
+        linear-gradient(180deg,#30363e 0%,#23282f 50%,#161a20 100%);
+      border-color:rgba(145,153,163,.62);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.20),
+        inset 0 0 0 6px rgba(9,12,16,.70),
+        inset 0 0 0 7px rgba(231,199,134,.58),
+        inset 0 0 0 8px rgba(92,58,26,.42),
+        inset 0 -1px 0 rgba(0,0,0,.78),
+        0 12px 28px rgba(0,0,0,.24)
+    }
+
+    /* Ergebnis: Variante D – dunkles Metall mit deutlich stärkerem Goldrahmen. */
+    .flow-step:last-child .flow-card{
+      background:
+        linear-gradient(105deg,rgba(255,238,194,.10) 0%,rgba(255,255,255,.025) 20%,transparent 40%,rgba(255,223,159,.045) 66%,transparent 84%),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 1px,rgba(0,0,0,.03) 1px 2px),
+        linear-gradient(180deg,#302b24 0%,#211e1b 52%,#141414 100%);
+      border-color:rgba(235,192,105,.88);
+      box-shadow:
+        inset 0 1px 0 rgba(255,240,204,.30),
+        inset 0 0 0 3px rgba(89,53,20,.90),
+        inset 0 0 0 5px rgba(238,194,104,.64),
+        inset 0 0 0 7px rgba(42,27,15,.76),
+        inset 0 -1px 0 rgba(0,0,0,.82),
+        0 0 16px rgba(208,154,64,.14),
+        0 12px 28px rgba(0,0,0,.26)
+    }
+
     .flow-step:not(:last-child)::after{content:none}
 
     .flow-step:not(:last-child) .flow-card::before{
@@ -383,23 +430,23 @@
         <div class="flow" aria-label="Vereinfachte Routing-Pipeline">
           <div class="flow-step edge">
             <div class="flow-label">Bedarf</div>
-            <div class="flow-card">Was wird gebraucht?</div>
+            <div class="flow-card">Anforderung erfassen</div>
           </div>
           <div class="flow-step core">
             <div class="flow-label">Providerwahl</div>
-            <div class="flow-card">Welche Quellen passen?</div>
+            <div class="flow-card">Passende Quellen auswählen</div>
           </div>
           <div class="flow-step core">
             <div class="flow-label">Prüfung</div>
-            <div class="flow-card">Welche sind geeignet?</div>
+            <div class="flow-card">Eignung prüfen</div>
           </div>
           <div class="flow-step core">
             <div class="flow-label">Abdeckung</div>
-            <div class="flow-card">Welche gelten hier?</div>
+            <div class="flow-card">Abdeckung verifizieren</div>
           </div>
           <div class="flow-step edge">
             <div class="flow-label">Ergebnis</div>
-            <div class="flow-card">Was wird geliefert?</div>
+            <div class="flow-card">Ergebnis bereitstellen</div>
           </div>
         </div>
         <p class="note">
@@ -469,6 +516,6 @@
       WeatherRouter · öffentliche Projektvorstellung
     </div>
   </footer>
-  <script src="assets/project-page/i18n.js?v=20261005-4" defer></script>
+  <script src="assets/project-page/i18n.js?v=20261005-5" defer></script>
 </body>
 </html>

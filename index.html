@@ -131,18 +131,58 @@
     .card h3{margin:8px 0 8px;font-size:1.12rem}
     .card p{margin:0;color:var(--muted);line-height:1.62;text-wrap:pretty}
     .flow{
-      display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:stretch
+      display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:start
     }
-    .flow div{
+    .flow-step{
       position:relative;
-      min-height:98px;padding:16px;border-radius:15px;border:1px solid rgba(255,255,255,.08);
-      background:#10141b;display:flex;align-items:center;justify-content:center;text-align:center;
-      color:#d9dee6;font-weight:700
+      display:flex;
+      flex-direction:column;
+      gap:9px
     }
-    .flow div:not(:last-child)::after{
+    .flow-label{
+      min-height:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#d8dde5;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase
+    }
+    .flow-card{
+      position:relative;
+      min-height:108px;
+      padding:18px 16px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-size:1.02rem;
+      line-height:1.35;
+      font-weight:760;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 28px rgba(0,0,0,.16)
+    }
+    .flow-step.edge .flow-card{
+      border:1px solid rgba(21,214,252,.42);
+      background:
+        linear-gradient(180deg,rgba(21,214,252,.12),rgba(21,214,252,.035)),
+        #10141b;
+      color:#edfaff
+    }
+    .flow-step.core .flow-card{
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg,rgba(208,170,92,.13),rgba(208,170,92,.035)),
+        #10141b;
+      color:#f5f0e5
+    }
+    .flow-step:not(:last-child)::after{
       content:"→";
       position:absolute;
-      top:50%;
+      top:74px;
       right:-15px;
       transform:translateY(-50%);
       color:var(--gold);
@@ -175,7 +215,7 @@
       .section-head{max-width:100%}
       h2{max-width:100%}
       .flow{grid-template-columns:1fr 1fr}
-      .flow div::after{display:none}
+      .flow-step::after{display:none}
       .split{grid-template-columns:1fr}
     }
     @media (max-width:620px){
@@ -191,6 +231,9 @@
       .section-head .eyebrow::before{width:22px;flex-basis:22px}
       h2{font-size:clamp(1.8rem,7.6vw,2.25rem);line-height:1.14;margin-bottom:14px}
       .grid,.flow{grid-template-columns:1fr}
+      .flow-step{gap:7px}
+      .flow-label{justify-content:flex-start;text-align:left}
+      .flow-card{min-height:84px}
       .hero-card{border-radius:18px}
     }
   </style>
@@ -285,11 +328,26 @@
           </p>
         </div>
         <div class="flow" aria-label="Vereinfachte Routing-Pipeline">
-          <div>Consumer-Request</div>
-          <div>Routing-Intent</div>
-          <div>Eligibility &amp; Profil</div>
-          <div>Coverage &amp; Semantik</div>
-          <div>Resource + Provenienz</div>
+          <div class="flow-step edge">
+            <div class="flow-label">Bedarf</div>
+            <div class="flow-card">Was wird gebraucht?</div>
+          </div>
+          <div class="flow-step core">
+            <div class="flow-label">Providerwahl</div>
+            <div class="flow-card">Welche Quellen passen?</div>
+          </div>
+          <div class="flow-step core">
+            <div class="flow-label">Prüfung</div>
+            <div class="flow-card">Welche sind geeignet?</div>
+          </div>
+          <div class="flow-step core">
+            <div class="flow-label">Abdeckung</div>
+            <div class="flow-card">Welche gelten hier?</div>
+          </div>
+          <div class="flow-step edge">
+            <div class="flow-label">Ergebnis</div>
+            <div class="flow-card">Was wird geliefert?</div>
+          </div>
         </div>
         <p class="note">
           Provider-IDs sind kein Qualitätswert. Ein Profil schränkt ein, definiert aber keine Provider-Priorität.

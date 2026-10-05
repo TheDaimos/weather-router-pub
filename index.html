@@ -150,14 +150,26 @@
     .flow-label{
       min-height:24px;
       display:flex;
+      flex-direction:column;
       align-items:center;
       justify-content:center;
       text-align:center;
-      color:#d8dde5;
-      font-size:.82rem;
+      color:#e2c58b;
+      font-size:11px;
       font-weight:800;
-      letter-spacing:.06em;
-      text-transform:uppercase
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      line-height:1.2;
+      text-shadow:0 1px 0 rgba(0,0,0,.7),0 0 10px rgba(226,197,139,.08)
+    }
+    .flow-label::after{
+      content:"";
+      display:block;
+      width:92px;
+      height:1px;
+      margin-top:8px;
+      background:linear-gradient(90deg,#7a4b20,#e7c786 45%,rgba(231,199,134,.15));
+      box-shadow:0 1px 0 rgba(255,240,205,.06)
     }
     .flow-card{
       position:relative;
@@ -240,7 +252,8 @@
       h2{font-size:clamp(1.8rem,7.6vw,2.25rem);line-height:1.14;margin-bottom:14px}
       .grid,.flow{grid-template-columns:1fr}
       .flow-step{gap:7px}
-      .flow-label{justify-content:flex-start;text-align:left}
+      .flow-label{justify-content:flex-start;text-align:left;align-items:flex-start}
+      .flow-label::after{width:72px;margin-top:6px}
       .flow-card{min-height:84px}
       .hero-card{border-radius:18px}
     }

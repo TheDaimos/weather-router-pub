@@ -138,156 +138,286 @@
     .card .num{color:var(--gold);font-weight:800;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
     .card h3{margin:8px 0 8px;font-size:1.12rem}
     .card p{margin:0;color:var(--muted);line-height:1.62;text-wrap:pretty}
-    .flow{
-      display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:start
-    }
-    .flow-step{
+    .routing-showcase{
       position:relative;
-      display:flex;
-      flex-direction:column;
-      gap:9px
+      overflow:hidden;
+      min-height:clamp(540px,56.28vw,664px);
+      border-radius:24px;
+      background:
+        url("assets/routing-flow/webp/routing-showcase-bg.webp") center/100% 100% no-repeat,
+        #071018;
+      box-shadow:0 26px 80px rgba(0,0,0,.34);
+      isolation:isolate
     }
-    .flow-label{
-      min-height:24px;
+    .routing-showcase::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(180deg,rgba(0,0,0,.04),transparent 42%,rgba(0,0,0,.08));
+      z-index:0
+    }
+    .routing-showcase__content{
+      position:relative;
+      z-index:1;
+      min-height:inherit;
+      padding:48px 34px 44px;
+      display:flex;
+      flex-direction:column
+    }
+    .routing-showcase__header{
+      text-align:center;
+      margin:0 auto;
+      max-width:760px
+    }
+    .routing-showcase__brand{
+      margin:0;
+      font-size:clamp(2rem,3.5vw,3.15rem);
+      line-height:1;
+      letter-spacing:-.045em;
+      font-weight:850;
+      color:#f4f7fb;
+      text-shadow:0 2px 20px rgba(0,0,0,.55)
+    }
+    .routing-showcase__brand span{color:var(--wr-blue)}
+    .routing-showcase__subtitle{
+      margin:13px 0 0;
+      color:#e2c58b;
+      font-size:clamp(.68rem,1.1vw,.84rem);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.23em;
+      text-shadow:0 1px 0 rgba(0,0,0,.8),0 0 14px rgba(226,197,139,.14)
+    }
+    .routing-flow{
+      width:100%;
+      margin-top:clamp(66px,8.2vw,98px);
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr) 40px minmax(0,1fr);
+      gap:7px;
+      align-items:start
+    }
+    .routing-step{
+      appearance:none;
+      border:0;
+      padding:0;
+      margin:0;
+      min-width:0;
+      color:inherit;
+      background:transparent;
+      font:inherit;
+      cursor:pointer;
+      text-align:center;
+      border-radius:18px
+    }
+    .routing-step__topic{
+      min-height:34px;
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:center;
-      text-align:center;
+      justify-content:flex-start;
       color:#e2c58b;
-      font-size:11px;
+      font-size:10.5px;
+      line-height:1.18;
       font-weight:800;
       text-transform:uppercase;
-      letter-spacing:.18em;
-      line-height:1.2;
-      text-shadow:0 1px 0 rgba(0,0,0,.7),0 0 10px rgba(226,197,139,.08)
+      letter-spacing:.17em;
+      text-shadow:0 1px 0 rgba(0,0,0,.78),0 0 10px rgba(226,197,139,.08)
     }
-    .flow-label::after{
+    .routing-step__topic::after{
       content:"";
       display:block;
-      width:92px;
+      width:78px;
       height:1px;
-      margin-top:8px;
+      margin-top:7px;
       background:linear-gradient(90deg,#7a4b20,#e7c786 45%,rgba(231,199,134,.15));
       box-shadow:0 1px 0 rgba(255,240,205,.06)
     }
-    .flow-card{
+    .routing-step__plate{
       position:relative;
-      min-height:108px;
-      padding:18px 16px;
-      border-radius:15px;
       display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      font-size:1.02rem;
-      line-height:1.35;
+      width:100%;
+      aspect-ratio:295/201;
+      padding:22px 21px;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-size:100% 100%;
+      filter:drop-shadow(0 15px 18px rgba(0,0,0,.34));
+      transform:translateY(0) scale(1);
+      transition:transform .18s ease,filter .18s ease
+    }
+    .routing-step--plain .routing-step__plate{
+      background-image:url("assets/routing-flow/webp/routing-plate-plain.webp")
+    }
+    .routing-step--core .routing-step__plate{
+      background-image:url("assets/routing-flow/webp/routing-plate-core.webp")
+    }
+    .routing-step--result .routing-step__plate{
+      background-image:url("assets/routing-flow/webp/routing-plate-result.webp")
+    }
+    .routing-step__label{
+      position:relative;
+      z-index:1;
+      display:block;
+      max-width:92%;
+      color:#f5f7fa;
+      font-size:clamp(.82rem,1.25vw,1rem);
+      line-height:1.27;
       font-weight:760;
-      color:#f4f6f8;
-      overflow:visible;
-      background:
-        linear-gradient(105deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.025) 18%,transparent 38%,rgba(255,255,255,.035) 62%,transparent 82%),
-        repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,rgba(0,0,0,.025) 1px 2px),
-        linear-gradient(180deg,#343b44 0%,#242a31 48%,#171b21 100%);
-      border:1px solid rgba(187,196,205,.50);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.20),
-        inset 0 -1px 0 rgba(0,0,0,.68),
-        0 12px 28px rgba(0,0,0,.24);
-      text-shadow:0 1px 0 rgba(0,0,0,.72)
+      text-wrap:balance;
+      text-shadow:0 2px 3px rgba(0,0,0,.94),0 0 12px rgba(0,0,0,.48)
     }
-
-    /* Bedarf: Variante C ohne Gold – schlichte, gebürstete Metallplatte. */
-    .flow-step:first-child .flow-card{
-      background:
-        linear-gradient(105deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.035) 19%,transparent 42%,rgba(255,255,255,.055) 64%,transparent 84%),
-        repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,rgba(0,0,0,.028) 1px 2px),
-        linear-gradient(180deg,#454d56 0%,#303740 48%,#1d2229 100%);
-      border-color:rgba(205,213,220,.64);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.30),
-        inset 0 0 0 5px rgba(14,17,22,.48),
-        inset 0 -1px 0 rgba(0,0,0,.76),
-        0 12px 28px rgba(0,0,0,.24)
+    .routing-step:hover .routing-step__plate{
+      transform:translateY(-3px) scale(1.012);
+      filter:brightness(1.06) drop-shadow(0 17px 22px rgba(0,0,0,.38))
     }
-
-    /* Routingkern: Variante C – dunkles Metall mit feiner goldener Innenlinie. */
-    .flow-step:nth-child(2) .flow-card,
-    .flow-step:nth-child(3) .flow-card,
-    .flow-step:nth-child(4) .flow-card{
-      background:
-        linear-gradient(105deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.02) 18%,transparent 40%,rgba(255,255,255,.03) 63%,transparent 84%),
-        repeating-linear-gradient(0deg,rgba(255,255,255,.016) 0 1px,rgba(0,0,0,.027) 1px 2px),
-        linear-gradient(180deg,#30363e 0%,#23282f 50%,#161a20 100%);
-      border-color:rgba(145,153,163,.62);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.20),
-        inset 0 0 0 6px rgba(9,12,16,.70),
-        inset 0 0 0 7px rgba(231,199,134,.58),
-        inset 0 0 0 8px rgba(92,58,26,.42),
-        inset 0 -1px 0 rgba(0,0,0,.78),
-        0 12px 28px rgba(0,0,0,.24)
+    .routing-step.is-active .routing-step__plate{
+      transform:translateY(-4px) scale(1.018);
+      filter:brightness(1.08) drop-shadow(0 0 12px rgba(230,185,93,.28)) drop-shadow(0 18px 23px rgba(0,0,0,.40))
     }
-
-    /* Ergebnis: Variante D – dunkles Metall mit deutlich stärkerem Goldrahmen. */
-    .flow-step:last-child .flow-card{
-      background:
-        linear-gradient(105deg,rgba(255,238,194,.10) 0%,rgba(255,255,255,.025) 20%,transparent 40%,rgba(255,223,159,.045) 66%,transparent 84%),
-        repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 1px,rgba(0,0,0,.03) 1px 2px),
-        linear-gradient(180deg,#302b24 0%,#211e1b 52%,#141414 100%);
-      border-color:rgba(235,192,105,.88);
-      box-shadow:
-        inset 0 1px 0 rgba(255,240,204,.30),
-        inset 0 0 0 3px rgba(89,53,20,.90),
-        inset 0 0 0 5px rgba(238,194,104,.64),
-        inset 0 0 0 7px rgba(42,27,15,.76),
-        inset 0 -1px 0 rgba(0,0,0,.82),
-        0 0 16px rgba(208,154,64,.14),
-        0 12px 28px rgba(0,0,0,.26)
+    .routing-step:focus-visible{
+      outline:2px solid rgba(231,199,134,.9);
+      outline-offset:4px
     }
-
-    .flow-step:not(:last-child)::after{content:none}
-
-    .flow-step:not(:last-child) .flow-card::before{
+    .routing-connector{
+      align-self:start;
+      margin-top:75px;
+      display:flex;
+      align-items:center;
+      justify-content:center
+    }
+    .routing-connector__medallion{
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#ffe4a5;
+      font-size:1.02rem;
+      line-height:1;
+      font-weight:900;
+      border:1px solid rgba(231,199,134,.72);
+      background:
+        radial-gradient(circle at 34% 28%,rgba(255,242,210,.28),transparent 30%),
+        linear-gradient(145deg,#5a4529 0%,#171713 46%,#87672f 100%);
+      box-shadow:
+        0 0 0 3px rgba(5,8,12,.82),
+        0 0 14px rgba(208,170,92,.22),
+        inset 0 1px 0 rgba(255,244,216,.28),
+        inset 0 -1px 0 rgba(0,0,0,.72)
+    }
+    .routing-details{
+      margin-top:24px;
+      border:1px solid rgba(226,197,139,.18);
+      border-radius:22px;
+      background:
+        linear-gradient(145deg,rgba(208,170,92,.045),transparent 34%),
+        linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012)),
+        #0d1118;
+      box-shadow:0 18px 50px rgba(0,0,0,.23),inset 0 1px 0 rgba(255,255,255,.035);
+      overflow:hidden
+    }
+    .routing-detail{
+      padding:28px 28px 24px
+    }
+    .routing-detail[hidden]{display:none}
+    .routing-detail.is-entering{animation:routing-detail-in .22s ease both}
+    @keyframes routing-detail-in{
+      from{opacity:.25;transform:translateY(5px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .routing-detail__head{max-width:1050px}
+    .routing-detail__eyebrow{
+      color:#e2c58b;
+      font-size:11px;
+      line-height:1.2;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      text-shadow:0 1px 0 rgba(0,0,0,.7),0 0 10px rgba(226,197,139,.08)
+    }
+    .routing-detail__eyebrow::after{
+      content:"";
+      display:block;
+      width:122px;
+      height:1px;
+      margin-top:7px;
+      background:linear-gradient(90deg,#7a4b20,#e7c786 45%,rgba(231,199,134,.15));
+      box-shadow:0 1px 0 rgba(255,240,205,.06)
+    }
+    .routing-detail h3{
+      margin:13px 0 9px;
+      font-size:clamp(1.45rem,2.5vw,2.05rem);
+      line-height:1.12;
+      letter-spacing:-.026em
+    }
+    .routing-detail__summary{
+      margin:0;
+      max-width:1050px;
+      color:#c2cad5;
+      line-height:1.64;
+      text-wrap:pretty
+    }
+    .routing-detail__grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:21px
+    }
+    .routing-detail__card{
+      padding:18px 18px 16px;
+      border:1px solid rgba(255,255,255,.075);
+      border-radius:16px;
+      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012))
+    }
+    .routing-detail__card h4{
+      margin:0 0 10px;
+      color:#f0f3f7;
+      font-size:.98rem
+    }
+    .routing-detail__card ul{
+      margin:0;
+      padding:0;
+      list-style:none
+    }
+    .routing-detail__card li{
+      position:relative;
+      padding:8px 0 8px 17px;
+      color:#aeb8c5;
+      line-height:1.48;
+      border-top:1px solid rgba(255,255,255,.055)
+    }
+    .routing-detail__card li:first-child{border-top:0;padding-top:2px}
+    .routing-detail__card li::before{
       content:"";
       position:absolute;
-      top:50%;
-      right:-18px;
-      width:18px;
-      height:2px;
-      transform:translateY(-50%);
-      background:linear-gradient(90deg,rgba(208,170,92,.18),rgba(231,199,134,.82));
-      box-shadow:0 0 8px rgba(208,170,92,.18);
-      z-index:2;
-      pointer-events:none
+      left:0;
+      top:1.03em;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:#d3ae60;
+      box-shadow:0 0 8px rgba(211,174,96,.24)
     }
-
-    .flow-step:not(:last-child) .flow-card::after{
-      content:"➜";
-      position:absolute;
-      top:50%;
-      right:-34px;
-      transform:translateY(-50%);
-      width:32px;
-      height:32px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      color:#ffe2a0;
-      font-size:1rem;
-      font-weight:900;
-      line-height:1;
-      border:1px solid rgba(231,199,134,.62);
-      background:
-        radial-gradient(circle at 35% 35%,rgba(255,234,190,.20),rgba(208,170,92,.14) 56%,rgba(208,170,92,.06) 100%),
-        #121821;
-      box-shadow:
-        0 0 0 3px rgba(9,11,16,.95),
-        0 0 14px rgba(208,170,92,.20),
-        inset 0 1px 0 rgba(255,245,220,.08);
-      z-index:3;
-      pointer-events:none
+    .routing-detail__note{
+      margin:20px 0 0;
+      padding:11px 0 0 17px;
+      border-top:1px solid rgba(255,255,255,.07);
+      border-left:2px solid rgba(208,170,92,.72);
+      color:#929daa;
+      line-height:1.55
+    }
+    .routing-details__footer{
+      margin:0;
+      padding:15px 28px 17px;
+      border-top:1px solid rgba(255,255,255,.065);
+      color:#8f98a6;
+      font-size:.9rem;
+      line-height:1.55;
+      background:rgba(0,0,0,.12)
     }
     .split{display:grid;grid-template-columns:1.14fr .86fr;gap:18px}
     .quote{
@@ -311,10 +441,23 @@
       .grid{grid-template-columns:1fr 1fr}
       .section-head{max-width:100%}
       h2{max-width:100%}
-      .flow{grid-template-columns:1fr 1fr}
-      .flow-step::after{display:none}
-      .flow-step .flow-card::before,
-      .flow-step .flow-card::after{display:none}
+      .routing-showcase{min-height:560px}
+      .routing-showcase__content{padding:42px 24px 36px}
+      .routing-flow{
+        margin-top:74px;
+        display:flex;
+        gap:10px;
+        overflow-x:auto;
+        overflow-y:visible;
+        scroll-snap-type:x proximity;
+        scrollbar-width:none;
+        padding:0 4px 18px
+      }
+      .routing-flow::-webkit-scrollbar{display:none}
+      .routing-step{flex:0 0 205px;scroll-snap-align:center}
+      .routing-connector{flex:0 0 30px;margin-top:74px}
+      .routing-detail__grid{grid-template-columns:1fr 1fr}
+      .routing-detail__card:last-child{grid-column:1/-1}
       .split{grid-template-columns:1fr}
     }
     @media (max-width:620px){
@@ -329,11 +472,19 @@
       .section-head .eyebrow{font-size:11px;margin-bottom:14px}
       .section-head .eyebrow::after{width:120px}
       h2{font-size:clamp(1.8rem,7.6vw,2.25rem);line-height:1.14;margin-bottom:14px}
-      .grid,.flow{grid-template-columns:1fr}
-      .flow-step{gap:7px}
-      .flow-label{justify-content:flex-start;text-align:left;align-items:flex-start}
-      .flow-label::after{width:72px;margin-top:6px}
-      .flow-card{min-height:84px}
+      .grid{grid-template-columns:1fr}
+      .routing-showcase{min-height:520px;border-radius:18px}
+      .routing-showcase__content{padding:34px 16px 28px}
+      .routing-showcase__brand{font-size:clamp(1.8rem,9vw,2.55rem)}
+      .routing-showcase__subtitle{font-size:.64rem;letter-spacing:.18em}
+      .routing-flow{margin-top:62px;margin-left:-4px;margin-right:-4px}
+      .routing-step{flex-basis:190px}
+      .routing-step__label{font-size:.9rem}
+      .routing-connector{margin-top:71px}
+      .routing-detail{padding:22px 17px 19px}
+      .routing-detail__grid{grid-template-columns:1fr}
+      .routing-detail__card:last-child{grid-column:auto}
+      .routing-details__footer{padding:14px 17px 16px}
       .hero-card{border-radius:18px}
     }
   </style>
@@ -419,39 +570,273 @@
 
     <section id="prinzip">
       <div class="shell">
-        <div class="section-head">
-          <div class="eyebrow">Routing-Prinzip</div>
-          <h2>Automatik im Normalfall. Präzision im Expertenmodus.</h2>
-          <p>
-            Breite Routing-Intents ermöglichen automatische Fallback-Ketten. Spezialisierte Capabilities bleiben bestehen,
-            wenn ein Consumer bewusst eine konkrete Messgröße oder Darstellungsart benötigt.
-          </p>
+        <div class="routing-showcase" aria-label="WeatherRouter Routing - Flow - Konzept">
+          <div class="routing-showcase__content">
+            <header class="routing-showcase__header">
+              <h2 class="routing-showcase__brand">Weather<span>Router</span></h2>
+              <p class="routing-showcase__subtitle">Routing - Flow - Konzept</p>
+            </header>
+
+            <div class="routing-flow" role="tablist" aria-label="Routing-Stationen">
+              <button class="routing-step routing-step--plain is-active"
+                      id="routing-anforderung"
+                      type="button"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="routing-panel-anforderung"
+                      tabindex="0"
+                      data-routing-step="anforderung">
+                <span class="routing-step__topic">Bedarf</span>
+                <span class="routing-step__plate">
+                  <span class="routing-step__label">Anforderung erfassen</span>
+                </span>
+              </button>
+
+              <span class="routing-connector" aria-hidden="true"><span class="routing-connector__medallion">➜</span></span>
+
+              <button class="routing-step routing-step--core"
+                      id="routing-providerwahl"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="routing-panel-providerwahl"
+                      tabindex="-1"
+                      data-routing-step="providerwahl">
+                <span class="routing-step__topic">Providerwahl</span>
+                <span class="routing-step__plate">
+                  <span class="routing-step__label">Passende Quellen auswählen</span>
+                </span>
+              </button>
+
+              <span class="routing-connector" aria-hidden="true"><span class="routing-connector__medallion">➜</span></span>
+
+              <button class="routing-step routing-step--core"
+                      id="routing-pruefung"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="routing-panel-pruefung"
+                      tabindex="-1"
+                      data-routing-step="pruefung">
+                <span class="routing-step__topic">Prüfung</span>
+                <span class="routing-step__plate">
+                  <span class="routing-step__label">Eignung prüfen</span>
+                </span>
+              </button>
+
+              <span class="routing-connector" aria-hidden="true"><span class="routing-connector__medallion">➜</span></span>
+
+              <button class="routing-step routing-step--core"
+                      id="routing-abdeckung"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="routing-panel-abdeckung"
+                      tabindex="-1"
+                      data-routing-step="abdeckung">
+                <span class="routing-step__topic">Abdeckung</span>
+                <span class="routing-step__plate">
+                  <span class="routing-step__label">Abdeckung verifizieren</span>
+                </span>
+              </button>
+
+              <span class="routing-connector" aria-hidden="true"><span class="routing-connector__medallion">➜</span></span>
+
+              <button class="routing-step routing-step--result"
+                      id="routing-ergebnis"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="routing-panel-ergebnis"
+                      tabindex="-1"
+                      data-routing-step="ergebnis">
+                <span class="routing-step__topic">Ergebnis</span>
+                <span class="routing-step__plate">
+                  <span class="routing-step__label">Ergebnis bereitstellen</span>
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="flow" aria-label="Vereinfachte Routing-Pipeline">
-          <div class="flow-step edge">
-            <div class="flow-label">Bedarf</div>
-            <div class="flow-card">Anforderung erfassen</div>
-          </div>
-          <div class="flow-step core">
-            <div class="flow-label">Providerwahl</div>
-            <div class="flow-card">Passende Quellen auswählen</div>
-          </div>
-          <div class="flow-step core">
-            <div class="flow-label">Prüfung</div>
-            <div class="flow-card">Eignung prüfen</div>
-          </div>
-          <div class="flow-step core">
-            <div class="flow-label">Abdeckung</div>
-            <div class="flow-card">Abdeckung verifizieren</div>
-          </div>
-          <div class="flow-step edge">
-            <div class="flow-label">Ergebnis</div>
-            <div class="flow-card">Ergebnis bereitstellen</div>
-          </div>
+
+        <div class="routing-details">
+          <article class="routing-detail" id="routing-panel-anforderung" role="tabpanel" aria-labelledby="routing-anforderung" data-routing-panel="anforderung">
+            <div class="routing-detail__head">
+              <div class="routing-detail__eyebrow">Bedarf</div>
+              <h3>Anforderung erfassen</h3>
+              <p class="routing-detail__summary">WeatherRouter übernimmt die fachliche Anfrage des Consumers und formt daraus einen Routing-Kontext. Der Consumer beschreibt den Bedarf – noch ohne einen bestimmten Provider festzulegen.</p>
+            </div>
+            <div class="routing-detail__grid">
+              <div class="routing-detail__card">
+                <h4>Was passiert hier?</h4>
+                <ul>
+                  <li>Routing-Intent oder spezialisierte Capability erkennen</li>
+                  <li>Ort, Punkt, Radius, Bounding Box oder Region erfassen</li>
+                  <li>Consumer-Profil und Expertenvorgaben berücksichtigen</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Eigenschaften</h4>
+                <ul>
+                  <li>Thema, Messgröße und gewünschte Darstellungsart</li>
+                  <li>Zeitraum, Aktualität und zeitlicher Kontext</li>
+                  <li>Geometrie, räumlicher Bezug und gewünschte Tiefe</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Provider / Beispiele</h4>
+                <ul>
+                  <li>Noch keine feste Providerwahl</li>
+                  <li>Providerneutraler Consumer-Vertrag</li>
+                  <li>Grundlage für die anschließende Kandidatensuche</li>
+                </ul>
+              </div>
+            </div>
+            <p class="routing-detail__note">Die Anfrage beschreibt, was gebraucht wird. Woher die Daten kommen, entscheidet WeatherRouter erst in den folgenden Schritten.</p>
+          </article>
+
+          <article class="routing-detail" id="routing-panel-providerwahl" role="tabpanel" aria-labelledby="routing-providerwahl" data-routing-panel="providerwahl" hidden>
+            <div class="routing-detail__head">
+              <div class="routing-detail__eyebrow">Providerwahl</div>
+              <h3>Passende Quellen auswählen</h3>
+              <p class="routing-detail__summary">Aus dem fachlichen Bedarf bildet WeatherRouter eine passende Kandidatenmenge. Dabei werden Themen, Capabilities, verfügbare Datenarten und mögliche Quellen zusammengeführt.</p>
+            </div>
+            <div class="routing-detail__grid">
+              <div class="routing-detail__card">
+                <h4>Was passiert hier?</h4>
+                <ul>
+                  <li>Passende Provider-Capabilities als Kandidaten bestimmen</li>
+                  <li>Thema, Datentyp und Darstellungsform zuordnen</li>
+                  <li>Fallback-fähige Kandidatenketten vorbereiten</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Eigenschaften</h4>
+                <ul>
+                  <li>Beobachtung, Radar, Satellit, Modell oder Ereignis-Feed</li>
+                  <li>Format, Zugriffspfad und zeitliche Auflösung</li>
+                  <li>Freigabe, Verfügbarkeit und Consumer-Kontext</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Provider / Beispiele</h4>
+                <ul>
+                  <li>DWD · NOAA / NWS · EUMETSAT / EUMETView</li>
+                  <li>NASA GIBS · SMHI · weitere themenspezifische Quellen</li>
+                  <li>Die Kandidatenmenge hängt von Anfrage und Kontext ab</li>
+                </ul>
+              </div>
+            </div>
+            <p class="routing-detail__note">Hier wird noch kein Gewinner erzwungen. WeatherRouter stellt zunächst die fachlich möglichen Quellen für die weitere Prüfung zusammen.</p>
+          </article>
+
+          <article class="routing-detail" id="routing-panel-pruefung" role="tabpanel" aria-labelledby="routing-pruefung" data-routing-panel="pruefung" hidden>
+            <div class="routing-detail__head">
+              <div class="routing-detail__eyebrow">Prüfung</div>
+              <h3>Eignung prüfen</h3>
+              <p class="routing-detail__summary">Die Kandidaten werden fachlich und technisch bewertet. WeatherRouter unterscheidet dabei bewusst zwischen ähnlicher Darstellung und tatsächlich vergleichbarer Mess- oder Datensemantik.</p>
+            </div>
+            <div class="routing-detail__grid">
+              <div class="routing-detail__card">
+                <h4>Was passiert hier?</h4>
+                <ul>
+                  <li>Semantik und technische Nutzbarkeit vergleichen</li>
+                  <li>Ausschlussregeln und Profilvorgaben anwenden</li>
+                  <li>Ungeeignete Kandidaten nachvollziehbar verwerfen</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Eigenschaften</h4>
+                <ul>
+                  <li>Messmethode, Beobachtungsart und physikalische Größe</li>
+                  <li>Einheit, Zeitsemantik und Aktualisierungsverhalten</li>
+                  <li>Capability-, Format- und Profilkompatibilität</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Provider / Beispiele</h4>
+                <ul>
+                  <li>Alle Kandidaten werden nach denselben Regeln bewertet</li>
+                  <li>Provider-IDs sind kein Qualitäts- oder Prioritätswert</li>
+                  <li>Eine Quelle bleibt nur bei fachlicher Eignung im Rennen</li>
+                </ul>
+              </div>
+            </div>
+            <p class="routing-detail__note">Eine technisch verfügbare Quelle ist nicht automatisch die richtige Quelle. Dieser Schritt trennt bloße Verfügbarkeit von fachlicher Eignung.</p>
+          </article>
+
+          <article class="routing-detail" id="routing-panel-abdeckung" role="tabpanel" aria-labelledby="routing-abdeckung" data-routing-panel="abdeckung" hidden>
+            <div class="routing-detail__head">
+              <div class="routing-detail__eyebrow">Abdeckung</div>
+              <h3>Abdeckung verifizieren</h3>
+              <p class="routing-detail__summary">WeatherRouter prüft, ob die verbliebenen Kandidaten für den angefragten Ort und die konkrete Geometrie tatsächlich gelten. So werden regionale und globale Quellen korrekt voneinander getrennt.</p>
+            </div>
+            <div class="routing-detail__grid">
+              <div class="routing-detail__card">
+                <h4>Was passiert hier?</h4>
+                <ul>
+                  <li>Punkt, Radius, Bounding Box oder Region validieren</li>
+                  <li>Räumliche Zuständigkeit und Geltungsbereich prüfen</li>
+                  <li>Nur tatsächlich gültige Kandidaten weiterführen</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Eigenschaften</h4>
+                <ul>
+                  <li>Regional, national, ozeanisch oder global</li>
+                  <li>Land-, Meeres- und Satellitenabdeckung</li>
+                  <li>outside_coverage und temporäre Nichtverfügbarkeit unterscheiden</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Provider / Beispiele</h4>
+                <ul>
+                  <li>Regionale Wetterdienste für ihre tatsächlichen Zuständigkeitsgebiete</li>
+                  <li>Globale Satellitenquellen für großräumige Abdeckung</li>
+                  <li>Fallback nur zwischen für den Ort gültigen Kandidaten</li>
+                </ul>
+              </div>
+            </div>
+            <p class="routing-detail__note">Erreichbarkeit ist nicht gleich Abdeckung. WeatherRouter verhindert, dass eine technisch antwortende Quelle außerhalb ihres fachlichen Geltungsbereichs verwendet wird.</p>
+          </article>
+
+          <article class="routing-detail" id="routing-panel-ergebnis" role="tabpanel" aria-labelledby="routing-ergebnis" data-routing-panel="ergebnis" hidden>
+            <div class="routing-detail__head">
+              <div class="routing-detail__eyebrow">Ergebnis</div>
+              <h3>Ergebnis bereitstellen</h3>
+              <p class="routing-detail__summary">Am Ende erhält der Consumer die passende Ressource. Gleichzeitig bleiben Herkunft, Auswahlweg und entscheidende Eigenschaften für Diagnose und Provenienz nachvollziehbar.</p>
+            </div>
+            <div class="routing-detail__grid">
+              <div class="routing-detail__card">
+                <h4>Was passiert hier?</h4>
+                <ul>
+                  <li>Bestgeeigneten Kandidaten für die konkrete Anfrage bestimmen</li>
+                  <li>Ressource, Datenzugriff oder Darstellung bereitstellen</li>
+                  <li>Provenienz, Entscheidung und Fallback-Weg offenlegen</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Eigenschaften</h4>
+                <ul>
+                  <li>Ressourcentyp, Format und Zugriffspfad</li>
+                  <li>Gewählter Provider und verwendete Capability</li>
+                  <li>Diagnose-, Provenienz- und Fallback-Informationen</li>
+                </ul>
+              </div>
+              <div class="routing-detail__card">
+                <h4>Provider / Beispiele</h4>
+                <ul>
+                  <li>Der Gewinner wird pro Anfrage und Kontext bestimmt</li>
+                  <li>Dasselbe Intent kann an anderem Ort zu einer anderen Quelle führen</li>
+                  <li>Der Consumer erhält das Ergebnis statt einer fest verdrahteten Providerwahl</li>
+                </ul>
+              </div>
+            </div>
+            <p class="routing-detail__note">WeatherRouter liefert nicht einfach irgendeine erreichbare Quelle, sondern eine nachvollziehbar ausgewählte Ressource für den konkreten Bedarf.</p>
+          </article>
+
+          <p class="routing-details__footer">Provider-IDs sind kein Qualitätswert. Ein Profil schränkt ein, definiert aber keine Provider-Priorität.</p>
         </div>
-        <p class="note">
-          Provider-IDs sind kein Qualitätswert. Ein Profil schränkt ein, definiert aber keine Provider-Priorität.
-        </p>
       </div>
     </section>
 
@@ -516,6 +901,7 @@
       WeatherRouter · öffentliche Projektvorstellung
     </div>
   </footer>
-  <script src="assets/project-page/i18n.js?v=20261005-5" defer></script>
+  <script src="assets/project-page/i18n.js?v=20261005-6" defer></script>
+  <script src="assets/project-page/routing-flow.js?v=20261005-1" defer></script>
 </body>
 </html>

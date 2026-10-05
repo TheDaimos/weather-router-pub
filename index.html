@@ -213,46 +213,110 @@
       position:absolute;
       left:0;
       top:0;
-      width:270px;
-      height:170px;
+      width:300px;
+      height:205px;
       pointer-events:none;
       z-index:1;
       opacity:1;
-      border-radius:22px;
+      border-radius:42%;
       transform:translate3d(0,0,0);
       transition:
         transform .40s cubic-bezier(.22,.78,.2,1),
         width .24s ease,
         height .24s ease,
-        box-shadow .20s ease,
-        background .20s ease;
+        background .20s ease,
+        opacity .20s ease;
       will-change:transform,width,height;
       background:
-        radial-gradient(ellipse at 50% 52%,rgba(222,176,86,.11) 0%,rgba(0,0,0,0) 72%);
+        radial-gradient(
+          ellipse at 50% 53%,
+          rgba(239,202,132,.48) 0%,
+          rgba(219,171,80,.28) 28%,
+          rgba(174,112,30,.12) 51%,
+          rgba(111,66,15,.045) 64%,
+          rgba(0,0,0,0) 75%
+        );
       box-shadow:
-        0 0 16px 4px rgba(216,170,82,.20),
-        0 0 36px 10px rgba(177,118,34,.11)
+        0 0 18px rgba(216,167,75,.10)
+    }
+    .routing-showcase__active-glow::after{
+      content:"";
+      position:absolute;
+      left:19%;
+      right:19%;
+      bottom:7%;
+      height:15%;
+      border-radius:50%;
+      background:radial-gradient(
+        ellipse at center,
+        rgba(231,188,103,.24) 0%,
+        rgba(188,126,40,.10) 48%,
+        rgba(0,0,0,0) 76%
+      );
+      pointer-events:none
     }
     .routing-showcase__active-glow.is-plain{
       background:
-        radial-gradient(ellipse at 50% 52%,rgba(202,229,248,.10) 0%,rgba(0,0,0,0) 72%);
+        radial-gradient(
+          ellipse at 50% 53%,
+          rgba(228,243,253,.46) 0%,
+          rgba(168,204,231,.26) 28%,
+          rgba(100,145,181,.11) 51%,
+          rgba(59,98,132,.04) 64%,
+          rgba(0,0,0,0) 75%
+        );
       box-shadow:
-        0 0 15px 4px rgba(197,224,244,.22),
-        0 0 34px 10px rgba(108,157,196,.11)
+        0 0 17px rgba(171,209,237,.10)
+    }
+    .routing-showcase__active-glow.is-plain::after{
+      background:radial-gradient(
+        ellipse at center,
+        rgba(181,217,241,.22) 0%,
+        rgba(102,152,190,.09) 48%,
+        rgba(0,0,0,0) 76%
+      )
     }
     .routing-showcase__active-glow.is-core{
       background:
-        radial-gradient(ellipse at 50% 52%,rgba(247,213,148,.13) 0%,rgba(0,0,0,0) 72%);
+        radial-gradient(
+          ellipse at 50% 53%,
+          rgba(255,231,177,.58) 0%,
+          rgba(235,190,101,.34) 27%,
+          rgba(190,126,35,.14) 51%,
+          rgba(124,73,16,.05) 65%,
+          rgba(0,0,0,0) 76%
+        );
       box-shadow:
-        0 0 17px 5px rgba(239,199,119,.30),
-        0 0 40px 12px rgba(191,126,35,.16)
+        0 0 20px rgba(223,176,86,.13)
+    }
+    .routing-showcase__active-glow.is-core::after{
+      background:radial-gradient(
+        ellipse at center,
+        rgba(239,195,108,.30) 0%,
+        rgba(187,122,34,.12) 48%,
+        rgba(0,0,0,0) 76%
+      )
     }
     .routing-showcase__active-glow.is-result{
       background:
-        radial-gradient(ellipse at 50% 52%,rgba(255,222,151,.15) 0%,rgba(0,0,0,0) 72%);
+        radial-gradient(
+          ellipse at 50% 53%,
+          rgba(255,239,194,.66) 0%,
+          rgba(250,200,96,.40) 27%,
+          rgba(211,137,31,.17) 52%,
+          rgba(145,79,13,.06) 66%,
+          rgba(0,0,0,0) 77%
+        );
       box-shadow:
-        0 0 18px 5px rgba(255,211,123,.36),
-        0 0 44px 13px rgba(220,143,31,.20)
+        0 0 22px rgba(237,183,72,.15)
+    }
+    .routing-showcase__active-glow.is-result::after{
+      background:radial-gradient(
+        ellipse at center,
+        rgba(255,205,103,.34) 0%,
+        rgba(210,131,27,.14) 48%,
+        rgba(0,0,0,0) 76%
+      )
     }
 
     /* Nur eine sehr dezente innere Lichtkante auf der aktiven Metallplatte. */
@@ -538,8 +602,18 @@
       transform:translateY(-5px) scale(1.025)
     }
     .routing-step:focus-visible{
-      outline:2px solid rgba(231,199,134,.9);
-      outline-offset:4px
+      outline:none
+    }
+    .routing-step:focus-visible .routing-step__topic{
+      color:#f2d89d;
+      text-shadow:
+        0 1px 0 rgba(0,0,0,.82),
+        0 0 10px rgba(226,197,139,.20)
+    }
+    .routing-step:focus-visible .routing-step__topic::after{
+      box-shadow:
+        0 1px 0 rgba(255,240,205,.10),
+        0 0 8px rgba(231,199,134,.20)
     }
     .routing-connector{
       position:relative;
@@ -1245,6 +1319,6 @@
     </div>
   </footer>
   <script src="assets/project-page/i18n.js?v=20261005-7" defer></script>
-  <script src="assets/project-page/routing-flow.js?v=20261005-6" defer></script>
+  <script src="assets/project-page/routing-flow.js?v=20261005-7" defer></script>
 </body>
 </html>

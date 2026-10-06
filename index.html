@@ -54,6 +54,19 @@
     .navlinks{align-items:center}
     .navlinks a{font-size:.92rem;color:var(--muted);text-decoration:none}
     .navlinks a:hover{color:var(--text)}
+    .navlinks a.project-hub-link{
+      color:#e2c58b;
+      padding:6px 10px;
+      border:1px solid rgba(211,174,96,.36);
+      border-radius:9px;
+      background:linear-gradient(180deg,rgba(211,174,96,.09),rgba(211,174,96,.025));
+      box-shadow:inset 0 1px 0 rgba(255,240,205,.05)
+    }
+    .navlinks a.project-hub-link:hover{
+      color:#f1d8a5;
+      border-color:rgba(224,190,122,.58);
+      background:linear-gradient(180deg,rgba(211,174,96,.14),rgba(211,174,96,.04))
+    }
     .language-picker{
       display:inline-flex;align-items:center;gap:7px;margin-left:4px;
       padding-left:12px;border-left:1px solid rgba(255,255,255,.1)
@@ -940,6 +953,7 @@
         <a href="#idee">Idee</a>
         <a href="#prinzip">Routing</a>
         <a href="#architektur">Architektur</a>
+        <a class="project-hub-link" href="https://thedaimos.github.io/project-hub/">Project Hub</a>
         <a href="https://github.com/TheDaimos/weather-router-pub" rel="noopener noreferrer">GitHub</a>
         <label class="language-picker" for="language-select">
           <span>Sprache</span>

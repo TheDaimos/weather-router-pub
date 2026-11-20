@@ -1,0 +1,22 @@
+{
+  "domain": "weather_router",
+  "name": "WeatherRouter",
+  "codeowners": [
+    "@TheDaimos"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http",
+    "websocket_api"
+  ],
+  "documentation": "https://github.com/TheDaimos/weather-router-dev",
+  "integration_type": "service",
+  "issue_tracker": "https://github.com/TheDaimos/weather-router-dev/issues",
+  "requirements": [
+    "h5py==3.16.0",
+    "pyproj==3.8.0"
+  ],
+  "single_config_entry": true,
+  "version": "1.0.0"
+}

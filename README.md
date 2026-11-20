@@ -1,27 +1,49 @@
-# WeatherRouter · public validation mirror
+<div align="center">
 
-This repository contains an independently versioned, **source-only validation snapshot** of WeatherRouter. It is not the development source of truth, a production release, or an installable distribution package.
+# WeatherRouter 1.0.0 FINAL
 
-- Source of truth: private development repository.
-- Snapshot: WR 0.10.84 DEV / Loader 87.
-- Standard-code reference: `1dce2d81b2497da5a05f7e08ce11b3731c1712cd`.
-- Public repository history is independent; the private development history is never imported.
-- Only explicitly allowlisted standard source, API-contract files, essential validation docs, and test tooling may enter this repository.
-- Excludes private extensions, instance exports, local configuration, credentials, archived internal planning, and original binary design assets.
-- A successful workflow validates this mirror snapshot. It is **not** a live Home Assistant acceptance test and does not by itself authorize DRA deployment.
+### Wetterdaten intelligent verbinden.
 
-The public validation snapshot intentionally omits product/runtime artwork. The only binary presentation assets allowed in this repository are explicitly approved files under `assets/project-page/` that are required by the public GitHub Pages project presentation. They are not part of the validation snapshot or an installable Home Assistant package. Do not install or deploy this checkout as a complete Home Assistant package.
+**Native Home-Assistant-Integration · Providerneutrales Wetter- und Gefahrenrouting**
 
-## Validation
+**Konzept und Entwicklung: Christian Köhler**
 
-```bash
-python scripts/verify_m2_structure.py
-find custom_components/weather_router/frontend -type f -name '*.js' -print0 | xargs -0 -n1 node --check
-```
+[Offizielle Projektseite](https://thedaimos.github.io/weather-router-pub/) · [Installation](#installation) · [Lizenz](LICENSE.md)
 
-See the GitHub Actions workflow for the complete source/contract validation gate.
+</div>
 
+WeatherRouter verbindet zahlreiche fachlich unterschiedliche Wetter-, Umwelt- und Gefahrenquellen mit einer zentralen, nachvollziehbaren Consumer-Schnittstelle. Consumer fragen nach einer Fähigkeit; WeatherRouter prüft zulässige Datenquellen, Abdeckung, Aktualität und Datenart.
 
-## Project page
+## Version 1.0.0 FINAL
 
-The public WeatherRouter project presentation is published from the repository root via GitHub Pages. The approved Project-Hub routing illustration is stored separately under `assets/project-page/` and is not part of the validation snapshot.
+- 39 registrierte Provider und acht Fachbereiche; auf **Neuinstallationen** standardmäßig aktiviert. Bestehende gespeicherte Einstellungen bleiben erhalten.
+- Consumer API V1 / V2, Providerdiagnose und WeatherRouter Lab.
+- DWD, OPERA und NASA sowie Wind-, Temperatur-, Niederschlags- und synoptische Datenwege nach jeweiligem Providervertrag.
+- Interne Premium-Projektpräsentation unter `/weather_router_static/weather-router-overview.html` – einschließlich Original-Branding und Link zur offiziellen Projektseite.
+- Eigener WeatherRouter-Seitenleisteneintrag für Administratoren.
+- OPERA-Wissenschafts-, Lizenz-, Verfügbarkeits- und Freigabeschranken bleiben bestehen; „aktiviert“ ist nicht mit „liefert aktuell Daten“ gleichzusetzen.
+
+Die FINAL-Funktionsbasis wurde aus WR `0.10.327 DEV / Loader 330` überführt. Loaderkennung: `1.0-loader-330`. Bestehende Consumer-Verträge wurden bei der reinen FINAL-Versionierung nicht absichtlich geändert.
+
+## Installation
+
+1. In **HACS → Benutzerdefinierte Repositories** `https://github.com/TheDaimos/weather-router-pub` als **Integration** hinzufügen.
+2. Die veröffentlichte Version **1.0.0** auswählen und installieren.
+3. Home Assistant vollständig neu starten.
+4. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** nach **WeatherRouter** suchen.
+5. Die Seitenleiste **WeatherRouter** als Administrator öffnen und die Provider prüfen.
+
+Wenn HACS noch keinen Release anzeigt, ist die Veröffentlichung des GitHub-Tags bzw. Releases nicht abgeschlossen. Die bloße Existenz der Quellen auf `main` ersetzt keinen freigegebenen GitHub-Release.
+
+## Datenschutz und Verantwortung
+
+Automatisierte Provider- und wissenschaftliche Freigaben ersetzen keine Prüfung von Nutzungsbedingungen, räumlicher Abdeckung oder Originaldaten. Ein einzelner Providerausfall soll andere Provider nicht unnötig blockieren.
+
+Private Realtests, Export2Git und instanzbezogene Diagnoseinformationen gehören ausschließlich in das private `TheDaimos/Project-Log-And-Export`-Archiv und sind **nicht** Bestandteil dieser Distribution.
+
+## Lizenz
+
+[WeatherRouter-Gemeinschaftslizenz (Modell B)](LICENSE.md). Copyright © 2026 **Christian Köhler**, ursprünglicher Urheber und Projektgründer. Rechte Dritter bleiben unberührt.
+
+---
+**WeatherRouter · Eine Idee weiter gedacht.**

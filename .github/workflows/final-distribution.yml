@@ -38,9 +38,15 @@ jobs:
           assert Path("hacs.json").is_file()
           print("OK: manifest, HACS and license")
           PY
-      - name: Python syntax
+      - name: Python syntax (without writing cache files)
         run: |
-          python -m compileall -q custom_components/weather_router
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          for source in Path('custom_components/weather_router').rglob('*.py'):
+              ast.parse(source.read_text(encoding='utf-8'), filename=str(source))
+          print('OK: Python syntax')
+          PY
       - name: JavaScript syntax
         shell: bash
         run: |

@@ -47,6 +47,8 @@ jobs:
               ast.parse(source.read_text(encoding='utf-8'), filename=str(source))
           print('OK: Python syntax')
           PY
+      - name: OPERA service default regression
+        run: python -m unittest discover -s tests -p 'test_opera_defaults.py' -v
       - name: JavaScript syntax
         shell: bash
         run: |

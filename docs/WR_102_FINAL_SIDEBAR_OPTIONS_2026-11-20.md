@@ -12,6 +12,13 @@ Datum: 20.11.2026
 - Bestehende Optionen für Router, Provider, Fachbereiche und Consumer-Profile werden unverändert übernommen.
 - Veraltete Beschreibung im Einrichtungsdialog in DE/EN aktualisiert.
 
+## OPERA-Dienste bei Neuinstallationen
+
+- RATE, DBZH und ACRR werden als Dienstpräferenzen bei Neuinstallationen standardmäßig aktiviert.
+- Explizit zuvor gespeicherte AUS-Entscheidungen bleiben erhalten.
+- Die isolierte OPERA-Entwicklungsvorschau, wissenschaftliche Freigaben, Gültigkeitsprüfungen und die NASA-IMERG-Opt-in-Ergänzung werden dadurch **nicht** eingeschaltet.
+- Regressionstests prüfen die Defaults, die Übernahme expliziter Werte und den unveränderten Status `UNVERIFIED`.
+
 ## Grenzen
 
 - Keine Änderung an Provider-Routing, OPERA-Freigaben oder Consumer-API-Verträgen.

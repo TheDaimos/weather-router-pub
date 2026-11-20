@@ -19,6 +19,14 @@ Datum: 20.11.2026
 - Die isolierte OPERA-Entwicklungsvorschau, wissenschaftliche Freigaben, Gültigkeitsprüfungen und die NASA-IMERG-Opt-in-Ergänzung werden dadurch **nicht** eingeschaltet.
 - Regressionstests prüfen die Defaults, die Übernahme expliziter Werte und den unveränderten Status `UNVERIFIED`.
 
+## Historisch bestätigte OPERA-Zeitwerte
+
+- OPERA-Gültigkeitsdauer: **1650 Sekunden**.
+- Stale-Grenze: **1651 Sekunden**.
+- Isolierte Entwicklungsvorschau: Standard-Gültigkeitsdauer **1650 Sekunden**, ohne Änderung ihrer Freigabe.
+- Beide Werte wurden am 02.11.2026 nach Korrektur eines fehlerhaften 900-s-Fallbacks durch Export2Git bestätigt.
+- Bereits gespeicherte Betreiberwerte haben weiterhin Vorrang vor den Defaults.
+
 ## Grenzen
 
 - Keine Änderung an Provider-Routing, OPERA-Freigaben oder Consumer-API-Verträgen.

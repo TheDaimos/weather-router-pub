@@ -8,11 +8,21 @@
 
 **Konzept und Entwicklung: Christian Köhler**
 
-[Offizielle Projektseite](https://thedaimos.github.io/weather-router-pub/) · [Installation](#installation) · [Lizenz](LICENSE.md)
+[Offizielle Projektseite](https://thedaimos.github.io/weather-router-pub/) · [GitHub-Repository](https://github.com/TheDaimos/weather-router-pub) · [Installation](#installation) · [Lizenz](LICENSE.md)
 
 </div>
 
 WeatherRouter verbindet zahlreiche fachlich unterschiedliche Wetter-, Umwelt- und Gefahrenquellen mit einer zentralen, nachvollziehbaren Consumer-Schnittstelle. Consumer fragen nach einer Fähigkeit; WeatherRouter prüft zulässige Datenquellen, Abdeckung, Aktualität und Datenart.
+
+## Projektlinks
+
+Offizielle Projektseite: https://thedaimos.github.io/weather-router-pub/
+
+Öffentliches GitHub-Repository: https://github.com/TheDaimos/weather-router-pub
+
+Release 1.0.0 FINAL: https://github.com/TheDaimos/weather-router-pub/releases/tag/v1.0.0
+
+Falls HACS einen externen Link fälschlich als GitHub-Dateipfad öffnet, die vollständige Adresse aus dieser Liste direkt im Browser verwenden.
 
 ## Version 1.0.0 FINAL
 
@@ -33,7 +43,7 @@ Die FINAL-Funktionsbasis wurde aus WR `0.10.327 DEV / Loader 330` überführt. L
 4. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** nach **WeatherRouter** suchen.
 5. Die Seitenleiste **WeatherRouter** als Administrator öffnen und die Provider prüfen.
 
-Wenn HACS noch keinen Release anzeigt, ist die Veröffentlichung des GitHub-Tags bzw. Releases nicht abgeschlossen. Die bloße Existenz der Quellen auf `main` ersetzt keinen freigegebenen GitHub-Release.
+Der offizielle GitHub-Release `v1.0.0` ist veröffentlicht. Bei fehlender Versionsanzeige HACS neu laden und den Repository-Eintrag aktualisieren.
 
 ## Datenschutz und Verantwortung
 

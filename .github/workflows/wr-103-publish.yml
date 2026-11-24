@@ -1,0 +1,112 @@
+name: WeatherRouter 1.0.3 FINAL – verified one-time publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/wr-103-publish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.repository == 'TheDaimos/weather-router-pub'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout immutable verified distribution candidate
+        uses: actions/checkout@v4
+        with:
+          ref: 0cc6974341ca27d3fc59da145a9508e4af505855
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Moon test dependencies
+        run: python -m pip install 'astronomy-engine==2.1.19' 'timezonefinder==8.2.0' voluptuous
+
+      - name: Verify fixed source and distribution metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "0cc6974341ca27d3fc59da145a9508e4af505855"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('custom_components/weather_router')
+          manifest=json.loads((root/'manifest.json').read_text(encoding='utf-8'))
+          assert manifest['domain']=='weather_router'
+          assert manifest['version']=='1.0.3'
+          assert (root/'moon_engine.py').is_file() and (root/'moon_websocket.py').is_file()
+          assert Path('hacs.json').is_file()
+          assert Path('LICENSE.md').is_file()
+          import ast
+          for f in root.rglob('*.py'):
+              ast.parse(f.read_text(encoding='utf-8'), filename=str(f))
+          print('Immutable release candidate, HACS, license and Python syntax OK')
+          PY
+
+      - name: Recheck Moon engine, WebSocket, range and OPERA defaults
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_moon_engine.py' -v
+          python -m unittest discover -s tests -p 'test_moon_websocket.py' -v
+          python -m unittest discover -s tests -p 'test_moon_distance.py' -v
+          python -m unittest discover -s tests -p 'test_opera_defaults.py' -v
+
+      - name: JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find custom_components/weather_router/frontend -type f -name '*.js' -print0 | xargs -0 -r -n1 node --check
+
+      - name: Distribution allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('custom_components/weather_router')
+          forbidden={'.env','secrets.yaml','secrets.yml','id_rsa','id_ed25519'}
+          suffixes={'.key','.pem','.p12','.pfx','.pyc'}
+          bad=[str(p) for p in root.rglob('*') if p.is_file() and (p.name.lower() in forbidden or p.suffix.lower() in suffixes)]
+          assert not bad, bad
+          assert len([p for p in root.rglob('*') if p.is_file()])==183, 'Distribution file inventory changed'
+          PY
+
+      - name: Package reviewed public distribution and compute checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          zip -q -r dist/WeatherRouter-1.0.3-FINAL.zip custom_components/weather_router LICENSE.md COPYRIGHT.md BRANDING.md
+          unzip -tqq dist/WeatherRouter-1.0.3-FINAL.zip
+          (cd dist && sha256sum WeatherRouter-1.0.3-FINAL.zip > SHA256SUMS && sha256sum -c SHA256SUMS)
+          cp docs/WR_103_FINAL_VERIFICATION_2026-11-24.md dist/RELEASE_NOTES.md
+
+      - name: Publish official version and attach installable assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v1.0.3 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "v1.0.3 already exists; not overwriting it."
+            exit 0
+          fi
+          gh release create v1.0.3 \
+            dist/WeatherRouter-1.0.3-FINAL.zip \
+            dist/SHA256SUMS \
+            --repo "$GITHUB_REPOSITORY" \
+            --target 0cc6974341ca27d3fc59da145a9508e4af505855 \
+            --title "WeatherRouter 1.0.3 FINAL" \
+            --notes-file dist/RELEASE_NOTES.md \
+            --latest
+          gh release view v1.0.3 --repo "$GITHUB_REPOSITORY" --json url,tagName,isDraft,assets

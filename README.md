@@ -8,11 +8,11 @@
 
 **Intelligentes Wetter- und Gefahrenrouting für Home Assistant**
 
-**Version 1.0.2 FINAL** · **Native Home-Assistant-Integration** · **Powered by independent weather sources**
+**Version 1.0.3 FINAL** · **Native Home-Assistant-Integration** · **Powered by independent weather sources**
 
 *Konzept und Entwicklung · Christian Köhler*
 
-[**Projektseite / Project website**](https://thedaimos.github.io/weather-router-pub/) · [**GitHub-Repository**](https://github.com/TheDaimos/weather-router-pub) · [**Release v1.0.2**](https://github.com/TheDaimos/weather-router-pub/releases/tag/v1.0.2)
+[**Projektseite / Project website**](https://thedaimos.github.io/weather-router-pub/) · [**GitHub-Repository**](https://github.com/TheDaimos/weather-router-pub) · [**Release v1.0.3**](https://github.com/TheDaimos/weather-router-pub/releases/tag/v1.0.3)
 
 **[Deutsch](#deutsch--weatherrouter-entdecken) · [English](#english--discover-weatherrouter)**
 
@@ -47,7 +47,7 @@ WeatherRouter verbindet Wetter-, Umwelt- und Gefahrenquellen mit einer **zentral
 
 1. In **HACS → Benutzerdefinierte Repositories** dieses Repository als Typ **Integration** hinzufügen:  
    `https://github.com/TheDaimos/weather-router-pub`
-2. **WeatherRouter 1.0.2 FINAL** installieren.
+2. **WeatherRouter 1.0.3 FINAL** installieren.
 3. Home Assistant **vollständig neu starten**.
 4. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** WeatherRouter auswählen.
 5. **WeatherRouter Lab** und die Seitenleiste öffnen; Providerstatus kontrollieren.
@@ -58,7 +58,7 @@ WeatherRouter verbindet Wetter-, Umwelt- und Gefahrenquellen mit einer **zentral
 
 ### Mehr erfahren
 
-**[Offizielle Projektseite öffnen](https://thedaimos.github.io/weather-router-pub/)** · **[GitHub-Quellcode ansehen](https://github.com/TheDaimos/weather-router-pub)** · **[FINAL-Release](https://github.com/TheDaimos/weather-router-pub/releases/tag/v1.0.2)**
+**[Offizielle Projektseite öffnen](https://thedaimos.github.io/weather-router-pub/)** · **[GitHub-Quellcode ansehen](https://github.com/TheDaimos/weather-router-pub)** · **[FINAL-Release](https://github.com/TheDaimos/weather-router-pub/releases/tag/v1.0.3)**
 
 Direkte Adressen, falls HACS externe Markdown-Links falsch auflöst:
 
@@ -89,22 +89,22 @@ WeatherRouter gives Home Assistant a **provider-neutral gateway for weather, env
 ### Install with HACS
 
 1. Add `https://github.com/TheDaimos/weather-router-pub` under **HACS → Custom repositories** as an **Integration**.
-2. Install **WeatherRouter 1.0.2 FINAL**.
+2. Install **WeatherRouter 1.0.3 FINAL**.
 3. **Fully restart** Home Assistant.
 4. Go to **Settings → Devices & services → Add integration** and select **WeatherRouter**.
 5. Open WeatherRouter Lab and check the provider status.
 
 On fresh installations, all 39 registered providers are enabled by default. Scientific, licensing, availability and release gates remain in force; *enabled* does not imply *currently delivering data*.
 
-**[Explore the official website](https://thedaimos.github.io/weather-router-pub/)** · **[Browse the GitHub repository](https://github.com/TheDaimos/weather-router-pub)** · **[FINAL release](https://github.com/TheDaimos/weather-router-pub/releases/tag/v1.0.2)**
+**[Explore the official website](https://thedaimos.github.io/weather-router-pub/)** · **[Browse the GitHub repository](https://github.com/TheDaimos/weather-router-pub)** · **[FINAL release](https://github.com/TheDaimos/weather-router-pub/releases/tag/v1.0.3)**
 
 ---
 
 ## Qualität, Datenschutz & Lizenz / Quality, privacy & license
 
-- **Release-Basis / Release baseline:** WR `0.10.327 DEV` · Loader `330` → `1.0.2 FINAL` · `1.0-loader-330`.
-- **Qualität / Quality:** Der FINAL-Distributionscheck ist bestanden. Die erweiterte DEV-Testmatrix ist noch nicht vollständig grün; die Funktionsabnahme im Zusammenspiel mit GewitterRadar läuft. / The FINAL distribution check passed; the full DEV test suite and combined functional acceptance remain open.
-- **[Öffentlicher Prüfbericht / Public verification report](https://github.com/TheDaimos/weather-router-pub/blob/main/docs/WR_100_FINAL_PUBLIC_VERIFICATION_2026-11-20.md)**
+- **Release-Basis / Release baseline:** WR `0.10.330 DEV` · Loader `333` → `1.0.3 FINAL` · `1.0-loader-333`.
+- **Qualität / Quality:** Der Distributionscheck und alle 18 Mondtests sind bestanden; die 107 historischen Fehler der erweiterten Testmatrix sind namentlich unverändert. Die vollständige HA-Lifecycle-Abnahme ist nicht nachgewiesen. / Distribution and all 18 lunar tests passed; the 107 historical extended-suite failures match by test identity. Full HA lifecycle acceptance is not evidenced.
+- **[Öffentlicher Prüfbericht / Public verification report](https://github.com/TheDaimos/weather-router-pub/blob/main/docs/WR_103_FINAL_VERIFICATION_2026-11-24.md)**
 - **Datenschutz / Privacy:** Private Realtests, Export2Git und instanzbezogene Diagnose-Exporte werden nicht öffentlich verteilt. / Private real-world test exports and instance diagnostics are excluded from this distribution.
 - **[Gemeinschaftslizenz Modell B / Community License Model B](https://github.com/TheDaimos/weather-router-pub/blob/v1.0.0/LICENSE.md)**
 
